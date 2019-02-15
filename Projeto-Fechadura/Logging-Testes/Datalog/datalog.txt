@@ -1,0 +1,4 @@
+15/02/2019 10:29:49  INFO:  Nome: diego 	Tipo: entrada
+15/02/2019 10:29:51  INFO:  Nome: diego 	Tipo: saida
+15/02/2019 10:29:54  INFO:  Nome: diego 	Tipo: entrada
+15/02/2019 10:29:56  INFO:  Nome: diego 	Tipo: saida
