@@ -1,44 +1,63 @@
+#aquivo principal
+#deu pau
+
 import threading
-import time, datalog, sys, logging, sched, time, login, logout, semcadastro, opfile, timing
+import queue
+import time, datalog
+
+exitFlag = 0
 
 class myThread (threading.Thread):
-    def __init__(self, threadID, name, counter):
+    def __init__(self, threadID, name, q):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.name = name
-        self.counter = counter
+        self.q = q
     def run(self):
         #Sincroniza as threads
-        threadLock.acquire()
-        threadexec(self.name, self.counter, 3)
+        #threadLock.acquire()
+        process_data(self.name, self.q)
         #Libera para a próxima thread
-        treadLock.release()
+        #treadLock.release()
         
-def threadexec(threadName, delay, counter):
-    while counter:
-        time.sleep(delay)
-        datalog.datalog()
-        time.sleep(delay)
-        timing.runtimer()
-        counter -= 1
+def process_data(threadName, q):
+    while not exitFlag:
+        queueLock.acquire()
+        if not workqueue.empty():
+            data = q.get()
+            queueLock.release()
+            datalog.datalog()
+        else:
+            queueLock.release()
+            time.sleep(1)
 
-threadLock = threading.Lock()
+threadList = ["Thread-1", "Thread-2"]
+nameList = ["One","Two"]
+queueLock = threading.Lock()
+workqueue = queue.Queue(10)
 threads = []
+threadID = 1
 
 #Cria novas threads
-thread1 = myThread(1, "Thread-1", 1)
-thread2 = myThread(2, "Thread-2", 2)
+for tName in threadList:
+    thread = myThread(threadID, tName, workqueue)
+    thread.start()
+    threads.append(thread)
+    threadID += 1
+
+#Preenche a Fila
+queueLock.acquire()
+for word in nameList:
+    workqueue.put(word)
+queueLock.release()
+
+#Espera a fila secar
+while not workqueue.empty():
+    pass
+
+exitFlag = 1
 
 
-#Inicia novas threads
-thread1.start()
-thread2.start()
-
-
-#Adiciona threads à lista
-
-threads.append(thread1)
-threads.append(thread2)
 
 #Espera as threads se completarem e reinicia
 for t in threads:

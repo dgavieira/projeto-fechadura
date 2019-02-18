@@ -1,6 +1,53 @@
-15/02/2019 11:37:40  INFO:  Fim de execução de Programa
+18/02/2019 09:13:23  INFO:  Fim de execução de Programa
 =======================================================================
 Fim de execução de Programa
 =======================================================================
-Fim de execução de Programa
+18/02/2019 09:17:59  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 09:18:00  INFO:  Nome: diego 	Tipo: saida
+18/02/2019 09:18:02  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 09:18:04  INFO:  Nome: diego 	Tipo: saida
+18/02/2019 09:18:26  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 09:18:27  INFO:  Nome: diego 	Tipo: saida
+18/02/2019 09:18:43  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 09:18:44  INFO:  Nome: diego 	Tipo: saida
+18/02/2019 09:19:44  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 09:19:46  INFO:  Nome: diego 	Tipo: saida
+18/02/2019 09:19:50  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 09:19:50  INFO:  Nome: diego 	Tipo: saida
+18/02/2019 09:20:01  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 09:20:02  INFO:  Nome: diego 	Tipo: saida
+18/02/2019 09:20:09  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 09:20:16  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 09:20:18  INFO:  Nome: leonardo 	Tipo: entrada
+18/02/2019 09:20:20  INFO:  Nome: leonardo 	Tipo: saida
+18/02/2019 09:20:23  INFO:  Nome: diego 	Tipo: saida
+18/02/2019 10:32:23  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 10:33:19  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 10:33:22  INFO:  Nome: diego 	Tipo: saida
+18/02/2019 10:33:22  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:26  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 10:33:28  INFO:  Nome: diego 	Tipo: saida
+18/02/2019 10:33:30  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:30  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:31  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:31  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:31  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:31  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:31  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:32  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:32  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:32  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:32  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:32  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:33  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:33  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:33  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:33  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:33  ERROR:  Usuário não cadastrado
+18/02/2019 10:33:33  ERROR:  Usuário não cadastrado
+18/02/2019 10:56:32  INFO:  Fim de execução de Programa
 =======================================================================
+18/02/2019 11:06:04  INFO:  Nome: diego 	Tipo: entrada
+18/02/2019 11:06:05  INFO:  Nome: diego 	Tipo: saida
+18/02/2019 11:06:07  INFO:  Nome: leonardo 	Tipo: entrada
+18/02/2019 11:06:09  INFO:  Nome: leonardo 	Tipo: saida

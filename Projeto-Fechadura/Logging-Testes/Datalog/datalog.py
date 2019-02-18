@@ -1,4 +1,4 @@
-import sys, logging, sched, time, login, logout, semcadastro, opfile
+import logging, time, login, logout, semcadastro, opfile
 
 def datalog():
     #configuração do logging
@@ -10,7 +10,7 @@ def datalog():
     ent = '' #garante que não tem lixo no espaço de memória
     name = '' #idem
     lista = [] #lista vazia que receberá a entrada de teclado
-    db = ['diego','leonardo','sair','wolfeschlegelsteinhausenbergerdorff'] #base de dados cadastral
+    db = ['diego','leonardo','sair', 'cotta'] #base de dados cadastral
 
     while (ent != 'sair'): #loop com flag de saida
         ent = input("Digite o Nome ou 'sair' para encerrar o programa: ")
