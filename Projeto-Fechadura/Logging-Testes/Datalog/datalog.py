@@ -1,4 +1,4 @@
-import logging, time, login, logout, semcadastro, opfile
+import logging, time, login, logout, semcadastro, opfile, shutdown
 
 def datalog():
     #configuração do logging
@@ -26,5 +26,6 @@ def datalog():
             semcadastro.semcadastro("Usuário não cadastrado")
             continue
     else: #se a entrada for a string sair, para o programa
+        shutdown.shutdown()
         opfile.opfile()
     return

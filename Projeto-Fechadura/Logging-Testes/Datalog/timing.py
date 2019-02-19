@@ -8,12 +8,13 @@ def timerlogger(sc):
     logging.basicConfig(filename = 'datalog.txt', format = '%(message)s', level=logging.DEBUG)
     str = '======================================================================='
     logging.info("%s", str)
-    s.enter(60,1, timerlogger, (sc,))
+    s.enter(5,1, timerlogger, (sc,))
     return
 
 def runtimer(s):
-    s.enter(60,1, timerlogger, (s,))
+    s.enter(5,1, timerlogger, (s,))
     s.run()
     return
 
 runtimer(s)
+

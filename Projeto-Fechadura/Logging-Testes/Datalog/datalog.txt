@@ -51,3 +51,42 @@ Fim de execução de Programa
 18/02/2019 11:06:05  INFO:  Nome: diego 	Tipo: saida
 18/02/2019 11:06:07  INFO:  Nome: leonardo 	Tipo: entrada
 18/02/2019 11:06:09  INFO:  Nome: leonardo 	Tipo: saida
+=======================================================================
+=======================================================================
+=======================================================================
+Fim de execução de Programa
+=======================================================================
+Interrupt in mainloop
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/thonny/shared/thonny/backend.py", line 96, in mainloop
+    cmd = self._fetch_command()
+  File "/usr/lib/python3/dist-packages/thonny/shared/thonny/backend.py", line 449, in _fetch_command
+    line = self._original_stdin.readline()
+  File "/usr/lib/python3/dist-packages/thonny/shared/thonny/backend.py", line 133, in signal_handler
+    raise KeyboardInterrupt("Execution interrupted")
+KeyboardInterrupt: Execution interrupted
+=======================================================================
+Fim de execução de Programa
+=======================================================================
+Fim de execução de Programa
+=======================================================================
+Fim de execução de Programa
+=======================================================================
+Fim de execução de Programa
+=======================================================================
+Fim de execução de Programa
+=======================================================================
+Fim de execução de Programa
+=======================================================================
+Fim de execução de Programa
+=======================================================================
+Fim de execução de Programa
+=======================================================================
+Fim de execução de Programa
+=======================================================================
+Fim de execução de Programa
+=======================================================================
+Fim de execução de Programa
+=======================================================================
+Fim de execução de Programa
+=======================================================================
