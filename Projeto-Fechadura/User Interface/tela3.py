@@ -1,7 +1,7 @@
 #Title: Biometric Lock User Interface
 #Organization: Optima-UFAM
-#Screen 1: Main Screen
-#Description: Main Screen for the User Interface
+#Screen 3: ADM level menu screen
+#Description: shows options on ADM level access to subscribe or delete lab members from the software database
 #Especs: Touchscreen LCD 3,5" 480x320
 #Autor: Diego Vieira
 
@@ -11,18 +11,18 @@ import time
 from tkinter import *
 
 GPIO.setmode(GPIO.BOARD)
-
-#RGB LED pin set as output 
+ 
+#RGB LED pin set as output
 GPIO.setup(40, GPIO.OUT)
 GPIO.setup(38, GPIO.OUT)
 GPIO.setup(36, GPIO.OUT)
 GPIO.setup(35, GPIO.OUT)
 GPIO.setup(32, GPIO.OUT)
  
-#Define o pino do sensor como entrada
+#sets sensor pin as input
 GPIO.setup(37, GPIO.IN)
  
-#Ativa Anodo Led RGB
+#Turns LED RGB anode on
 GPIO.output(32, 1)
  
 #Alimentacao sensor
@@ -67,7 +67,7 @@ def createDisplay():
   global tk, canvas, light
   #Cria a janela tk
   tk = Tk()
-  tk.title("Main Screen")
+  tk.title("ADM Level Menu")
    
   tk.overrideredirect(True)
   tk.config(cursor="none")
@@ -79,14 +79,14 @@ def createDisplay():
    
   #Desenha Botao1  
   obj1Id = canvas.create_rectangle(0,0,478,114,fill=BRIGHTRED, tags = "objt1Tag")
-  obj2Id = canvas.create_text(239, 57,  text="OPTIONS", fill="white", font=("Helvetica", 30, "bold"))
+  obj2Id = canvas.create_text(239, 57,  text="ENROLL", fill="white", font=("Helvetica", 30, "bold"))
  
   canvas.tag_bind(obj1Id, '<ButtonPress-1>', onObjectClick1)
   canvas.tag_bind(obj2Id, '<ButtonPress-1>', onObjectClick1)
  
   #Desenha Botao2
   obj3Id = canvas.create_rectangle(0, 114, 478, 114,fill=GREEN,tags = "objt3Tag")
-  obj4Id = canvas.create_text(239, 166,  text="OPEN THE DOOR", fill="white", font=("Helvetica", 30, "bold"))
+  obj4Id = canvas.create_text(239, 166,  text="DELETE", fill="white", font=("Helvetica", 30, "bold"))
    
   canvas.tag_bind(obj3Id, '<ButtonPress-1>', onObjectClick2)
   canvas.tag_bind(obj4Id, '<ButtonPress-1>', onObjectClick2)

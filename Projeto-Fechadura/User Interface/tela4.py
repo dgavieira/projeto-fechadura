@@ -1,7 +1,8 @@
 #Title: Biometric Lock User Interface
 #Organization: Optima-UFAM
-#Screen 1: Main Screen
-#Description: Main Screen for the User Interface
+#Screen 4: Enroll Screen
+#Description: Screen for enroll a brand new lab member
+#INPUTS: Name; Title; Button for Fingerprint Loop
 #Especs: Touchscreen LCD 3,5" 480x320
 #Autor: Diego Vieira
 
@@ -11,48 +12,48 @@ import time
 from tkinter import *
 
 GPIO.setmode(GPIO.BOARD)
-
-#RGB LED pin set as output 
+ 
+#RGB LED pin set as output
 GPIO.setup(40, GPIO.OUT)
 GPIO.setup(38, GPIO.OUT)
 GPIO.setup(36, GPIO.OUT)
 GPIO.setup(35, GPIO.OUT)
 GPIO.setup(32, GPIO.OUT)
  
-#Define o pino do sensor como entrada
+#sets sensor pin as input
 GPIO.setup(37, GPIO.IN)
  
-#Ativa Anodo Led RGB
+#Turns LED RGB anode on
 GPIO.output(32, 1)
  
-#Alimentacao sensor
+#Sensor source
 GPIO.output(35, 1)
  
-#Estado inicial dos leds
+#LEDs initial state
 estado_1 = False
 estado_2 = False
 estado_3 = False
  
-#rotina para acender o led
+#LED turn on loop
 def acendeled(pino_led):
     GPIO.output(pino_led, 0)
     return
  
-#rotina para apagar o led
+#LED turn off loop
 def apagaled(pino_led):
     GPIO.output(pino_led, 1)
     return
  
-#Apaga o led
+#LED turn off
 apagaled(40)
 apagaled(38)
 apagaled(36)
 
-#Define o tamanho da tela
+#Set the window size
 WINDOW_W = 478
 WINDOW_H = 280
 
-#Definicao de cores padrao HEX COLOR
+#Color set HEX COLOR standards
 BLACK          = '#000000'
 BRIGHTRED      = '#ff0000'
 RED            = '#9b0000'
@@ -64,44 +65,31 @@ WHITE          = '#ffffff'
 YELLOW         = '#ffff00'
 
 def createDisplay():
-  global tk, canvas, light
-  #Cria a janela tk
+  global master, tk, canvas, light
+  #Creates the tkinter window
   tk = Tk()
-  tk.title("Main Screen")
-   
-  tk.overrideredirect(True)
+  tk.title("Admin Access")
+  
+  #prevents the mouse from drag the display
+  #tk.overrideredirect(True)
+  #Comment the line or change to False to allow it
+  tk.overrideredirect(False)
   tk.config(cursor="none")
    
   #tk.geometry("{0}x{1}+0+0".format(tk.winfo_screenwidth(), tk.winfo_screenheight()))
    
-  #Adiciona a area para desenho
-  canvas = Canvas(tk, width=WINDOW_W, height=WINDOW_H, background=BLACK)
-   
-  #Desenha Botao1  
-  obj1Id = canvas.create_rectangle(0,0,478,114,fill=BRIGHTRED, tags = "objt1Tag")
-  obj2Id = canvas.create_text(239, 57,  text="OPTIONS", fill="white", font=("Helvetica", 30, "bold"))
- 
-  canvas.tag_bind(obj1Id, '<ButtonPress-1>', onObjectClick1)
-  canvas.tag_bind(obj2Id, '<ButtonPress-1>', onObjectClick1)
- 
-  #Desenha Botao2
-  obj3Id = canvas.create_rectangle(0, 114, 478, 114,fill=GREEN,tags = "objt3Tag")
-  obj4Id = canvas.create_text(239, 166,  text="OPEN THE DOOR", fill="white", font=("Helvetica", 30, "bold"))
-   
-  canvas.tag_bind(obj3Id, '<ButtonPress-1>', onObjectClick2)
-  canvas.tag_bind(obj4Id, '<ButtonPress-1>', onObjectClick2)
- 
-  #Desenha Botao3
-  obj5Id = canvas.create_rectangle(0, 217, 478,280,fill=BRIGHTBLUE,tags = "objt5Tag")
-  obj6Id = canvas.create_text(239, 255,  text="EXIT", fill="white", font=("Helvetica", 30, "bold"))
-   
-  canvas.tag_bind(obj5Id, '<ButtonPress-1>', onObjectClick3)
-  canvas.tag_bind(obj6Id, '<ButtonPress-1>', onObjectClick3)
-     
+  #Adds the canvas area
+  canvas = Canvas(tk, width=WINDOW_W, height=WINDOW_H, background=YELLOW)
   canvas.pack()
+  
+  nameLabel = Label(tk, width = 15, text = "Name", font=("Arial", 12, "bold"))
+  nameLabel.pack(side=LEFT)
+  
+  titleLabel = Label(tk, width = 15, text = "Title", font=("Arial", 12, "bold"))
+  titleLabel.pack(side=LEFT)
  
-  #Cria botao SAIR
-  btn = Button(tk, height=1, text="Sair", font=("Arial", 12, "bold"), command=terminate)
+  #Creates exit BUTTON under the canvas area
+  btn = Button(tk, height=1, text="exit", font=("Arial", 12, "bold"), command=terminate)
   btn.pack()
    
   #Retangulo mensagem sensor infravermelho
@@ -109,9 +97,10 @@ def createDisplay():
  
   #Verifica se o sensor infravermelho foi acionado
   #tk.after(100, checkPort)
-   
+  
   tk.mainloop()
- 
+  
+  
 def onObjectClick1(event):
   #Clique no botao 1
   global estado_1
