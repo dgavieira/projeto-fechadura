@@ -6,7 +6,8 @@
 #Autor: Diego Vieira
 
 from tkinter import *
-import tela01alt, tela02alt, tela04alt
+import tela01alt, tela02alt
+
 
 def telatres():
     class ScreenThree:

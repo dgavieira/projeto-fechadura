@@ -38,8 +38,8 @@ def teladois():
             self.titulo = Label(self.primeiroContainer, text="MASTER FINGER")
             self.titulo["font"] = ("Arial", "10", "bold")
             self.titulo.pack()
-      
-            self.nomeLabel = Label(self.segundoContainer,text="Name", font=self.fontePadrao)
+    
+            self.nomeLabel = Label(self.segundoContainer,text="Nome", font=self.fontePadrao)
             self.nomeLabel.pack(side=LEFT)
       
             self.nome = Entry(self.segundoContainer)
@@ -47,7 +47,7 @@ def teladois():
             self.nome["font"] = self.fontePadrao
             self.nome.pack(side=LEFT)
       
-            self.senhaLabel = Label(self.terceiroContainer, text="Password", font=self.fontePadrao)
+            self.senhaLabel = Label(self.terceiroContainer, text="Senha", font=self.fontePadrao)
             self.senhaLabel.pack(side=LEFT)
       
             self.senha = Entry(self.terceiroContainer)
@@ -59,7 +59,7 @@ def teladois():
             self.autenticar = Button(self.quartoContainer)
             self.autenticar["text"] = "LOGIN"
             self.autenticar["font"] = ("Calibri", "8")
-            self.autenticar["width"] = 30
+            self.autenticar["width"] = 12
             self.autenticar["command"] = self.verificaSenha
             self.autenticar.pack()
       
@@ -70,6 +70,7 @@ def teladois():
         def verificaSenha(self):
             usuario = self.nome.get()
             senha = self.senha.get()
+
             if usuario == "cotta" and senha == "admin" or usuario == "leonardo" and senha == "admin":
                 self.mensagem["text"] = "Access Granted"
                 fechar()
@@ -80,7 +81,7 @@ def teladois():
         
     def fechar():
         root.destroy()
-            
+
     root = Tk()
     ScreenTwo(root)
     root.title("Admin Access")

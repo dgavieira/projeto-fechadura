@@ -52,11 +52,7 @@ def telaquatro():
             self.botao["text"] = "FINGERPRINT"
             self.botao["font"] = ("Calibri", "24")
             self.botao["width"] = 30
-            #self.botao["command"] = self.v
             self.botao.pack()
-      
-            #self.mensagem = Label(self.quartoContainer, text="", font=self.fontePadrao)
-            #self.mensagem.pack()
             
     root = Tk()
     ScreenFour(root)
