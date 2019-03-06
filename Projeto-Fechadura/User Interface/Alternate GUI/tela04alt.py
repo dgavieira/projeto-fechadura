@@ -7,6 +7,7 @@
 #Autor: Diego Vieira
 
 from tkinter import *
+import tela05alt
 
 def telaquatro():
     class ScreenFour:
@@ -51,6 +52,7 @@ def telaquatro():
             self.botao = Button(self.quartoContainer)
             self.botao["text"] = "FINGERPRINT"
             self.botao["font"] = ("Calibri", "24")
+            self.botao["command"] = tela05alt.telacinco
             self.botao["width"] = 30
             self.botao.pack()
             

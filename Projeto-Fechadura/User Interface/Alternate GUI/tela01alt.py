@@ -41,17 +41,6 @@ def telaum():
         
     def fechar():
         root.destroy()
-            self.button1["command"] = tela02alt.teladois
-            self.button1.pack()
-            
-            self.button2 = Button(self.widget1, text = "OPEN THE DOOR")
-            self.button2["font"]= ("Arial","24")
-            self.button2.pack()
-            
-            self.button3 = Button(self.widget1, text = "EXIT")
-            self.button3["font"]= ("Arial","24")
-            self.button3["command"] = fechar.fechar
-            self.button3.pack()
             
     root = Tk()
     ScreenOne(root)
