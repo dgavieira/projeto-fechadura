@@ -31,9 +31,10 @@ def telatres():
             
             self.button3 = Button(self.widget1, text = "EXIT")
             self.button3["font"]= ("Arial","24")
-            self.button3["width"] = 30
+            self.button3["width"] = 15
             self.button3["command"] = doublefuncexit
             self.button3.pack()
+            
             
     def doublefuncenroll():
         fechar()

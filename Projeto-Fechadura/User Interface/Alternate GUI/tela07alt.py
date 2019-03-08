@@ -6,7 +6,7 @@
 #Autor: Diego Vieira
 
 from tkinter import *
-import tela03alt
+import tela01alt, tela03alt
 
 def telasete():
     class ScreenSeven:
@@ -30,6 +30,22 @@ def telasete():
             self.no["font"] = self.fontePadrao
             self.no["width"] = 18
             self.no.pack(side=RIGHT)
+            
+            self.widget2 = Frame(master)
+            self.widget2.pack(side=BOTTOM)
+            
+            self.home = Button(self.widget2,text = "MAIN MENU")
+            self.home["font"] = ("Calibri","8")
+            self.home["width"] = 12
+            self.home["command"] = returntohome
+            self.home.pack(side=BOTTOM)
+            
+    def returntohome():
+        fechar()
+        tela01alt.telaum()
+        
+    def fechar():
+        root.destroy()
             
     root = Tk()
     ScreenSeven(root)

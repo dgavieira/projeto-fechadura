@@ -34,6 +34,10 @@ def teladois():
             self.quartoContainer = Frame(master)
             self.quartoContainer["pady"] = 20
             self.quartoContainer.pack()
+            
+            self.quintoContainer = Frame(master)
+            self.quintoContainer["pady"] = 20
+            self.quintoContainer.pack()
       
             self.titulo = Label(self.primeiroContainer, text="MASTER FINGER")
             self.titulo["font"] = ("Arial", "10", "bold")
@@ -65,6 +69,13 @@ def teladois():
       
             self.mensagem = Label(self.quartoContainer, text="", font=self.fontePadrao)
             self.mensagem.pack()
+            
+            self.home = Button(self.quintoContainer)
+            self.home["text"] = "MAIN MENU"
+            self.home["font"] = ("Calibri", "8")
+            self.home["width"] = 12
+            self.home["command"] = returntohome
+            self.home.pack(side=BOTTOM)
       
         #Método verificar senha
         def verificaSenha(self):
@@ -78,6 +89,10 @@ def teladois():
             else:
                 self.mensagem["text"] = "Access Denied"
                 #fechar()
+                
+    def returntohome():
+        fechar()
+        tela01alt.telaum()
         
     def fechar():
         root.destroy()

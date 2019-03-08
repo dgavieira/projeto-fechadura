@@ -7,7 +7,7 @@
 #Autor: Diego Vieira
 
 from tkinter import *
-import tela05alt
+import tela01alt, tela05alt
 
 def telaquatro():
     class ScreenFour:
@@ -28,6 +28,10 @@ def telaquatro():
             self.quartoContainer = Frame(master)
             self.quartoContainer["pady"] = 20
             self.quartoContainer.pack()
+            
+            self.quintoContainer = Frame(master)
+            self.quintoContainer["pady"] = 20
+            self.quintoContainer.pack()
       
             self.titulo = Label(self.primeiroContainer, text="ENROLL")
             self.titulo["font"] = ("Arial", "10", "bold")
@@ -55,6 +59,20 @@ def telaquatro():
             self.botao["command"] = tela05alt.telacinco
             self.botao["width"] = 30
             self.botao.pack()
+            
+            self.home = Button(self.quintoContainer)
+            self.home["text"] = "MAIN MENU"
+            self.home["font"] = ("Calibri", "8")
+            self.home["width"] = 12
+            self.home["command"] = returntohome
+            self.home.pack()
+    
+    def returntohome():
+        fechar()
+        tela01alt.telaum()
+        
+    def fechar():
+        root.destroy()               
             
     root = Tk()
     ScreenFour(root)
