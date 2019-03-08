@@ -21,17 +21,20 @@ def telatres():
             self.button1 = Button(self.widget1, text = "ENROLL")
             self.button1["font"]= ("Arial","24")
             self.button1["width"] = 30
+            self.button1["height"] = 3
             self.button1["command"] = doublefuncenroll
             self.button1.pack()
             
             self.button2 = Button(self.widget1, text = "DELETE")
             self.button2["font"]= ("Arial","24")
+            self.button2["height"] = 3
             self.button2["width"] = 30
             self.button2.pack()
             
             self.button3 = Button(self.widget1, text = "EXIT")
             self.button3["font"]= ("Arial","24")
-            self.button3["width"] = 15
+            self.button3["width"] = 30
+            self.button2["height"] = 2
             self.button3["command"] = doublefuncexit
             self.button3.pack()
             
