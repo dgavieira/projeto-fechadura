@@ -32,35 +32,47 @@ def telaquatro():
             self.quintoContainer = Frame(master)
             self.quintoContainer["pady"] = 20
             self.quintoContainer.pack()
+            
+            self.sextoContainer = Frame(master)
+            self.sextoContainer["pady"] = 20
+            self.sextoContainer.pack()
       
             self.titulo = Label(self.primeiroContainer, text="ENROLL")
             self.titulo["font"] = ("Arial", "10", "bold")
             self.titulo.pack()
       
-            self.nomeLabel = Label(self.segundoContainer,text="Name", font=self.fontePadrao)
-            self.nomeLabel.pack(side=LEFT)
+            self.firstnameLabel = Label(self.segundoContainer,text="First Name", font=self.fontePadrao)
+            self.firstnameLabel.pack(side=LEFT)
       
-            self.nome = Entry(self.segundoContainer)
-            self.nome["width"] = 30
-            self.nome["font"] = self.fontePadrao
-            self.nome.pack(side=LEFT)
+            self.firstname = Entry(self.segundoContainer)
+            self.firstname["width"] = 30
+            self.firstname["font"] = self.fontePadrao
+            self.firstname.pack(side=LEFT)
       
-            self.titleLabel = Label(self.terceiroContainer, text="Title", font=self.fontePadrao)
+            self.lastnameLabel = Label(self.terceiroContainer, text="Last Name", font=self.fontePadrao)
+            self.lastnameLabel.pack(side=LEFT)
+      
+            self.lastname = Entry(self.terceiroContainer)
+            self.lastname["width"] = 30
+            self.lastname["font"] = self.fontePadrao
+            self.lastname.pack(side=LEFT)
+            
+            self.titleLabel = Label(self.quartoContainer, text="Title", font=self.fontePadrao)
             self.titleLabel.pack(side=LEFT)
       
-            self.title = Entry(self.terceiroContainer)
-            self.title["width"] = 30
-            self.title["font"] = self.fontePadrao
-            self.title.pack(side=LEFT)
+            self.titlename = Entry(self.quartoContainer)
+            self.titlename["width"] = 30
+            self.titlename["font"] = self.fontePadrao
+            self.titlename.pack(side=LEFT)
       
-            self.botao = Button(self.quartoContainer)
+            self.botao = Button(self.quintoContainer)
             self.botao["text"] = "FINGERPRINT"
             self.botao["font"] = ("Calibri", "24")
             self.botao["command"] = tela05alt.telacinco
             self.botao["width"] = 30
             self.botao.pack()
             
-            self.home = Button(self.quintoContainer)
+            self.home = Button(self.sextoContainer)
             self.home["text"] = "MAIN MENU"
             self.home["font"] = ("Calibri", "8")
             self.home["width"] = 12
