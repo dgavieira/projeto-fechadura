@@ -7,7 +7,7 @@
 #Autor: Diego Vieira
 
 from tkinter import *
-import tela01alt, tela05alt
+import tela01alt, tela05alt, sqlite3
 
 def telaquatro():
     class ScreenFour:
@@ -79,6 +79,23 @@ def telaquatro():
             self.home["command"] = returntohome
             self.home.pack()
     
+    def enabledb():
+        conn = sqlite3.connect('optima.db')
+        cursor = conn.cursor()
+        getter()
+        cursor.execute("""
+            INSERT INTO optima (first_name, last_name, title, admin)
+            VALUES (?, ?, ?, ?)
+            """, (p_first_name, p_last_name, p_title, p_admin))
+        conn.commit()
+        print('Dados inseridos com sucesso.')
+        conn.close()
+        
+    def getter(self):
+        p_first_name = self.firstname.get()
+        p_last_name = self.lastname.get()
+        p_title = self.title.get()
+    
     def returntohome():
         fechar()
         tela01alt.telaum()
@@ -91,5 +108,6 @@ def telaquatro():
     root.title("Enroll Screen")
     root.geometry('478x270')
     #root.overrideredirect(True)
+    enabledb()
     root.mainloop()
             
