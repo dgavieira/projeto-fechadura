@@ -4,7 +4,7 @@ import sqlite3
 conn = sqlite3.connect('optima.db')
 cursor = conn.cursor()
 
-root = Tk()
+
 
 def createscreen(master = None):
     fontePadrao = ("Arial", "10")
@@ -80,7 +80,8 @@ conn.close()
 
 def fechar():
     root.destroy()
-                    
+    
+root = Tk()                    
 createscreen()
 root.title("Enroll Screen")
 root.geometry('478x270')

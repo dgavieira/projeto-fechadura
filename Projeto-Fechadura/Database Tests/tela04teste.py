@@ -1,7 +1,7 @@
 from tkinter import *
 import sqlite3
 
-conn = sqlite3.connect()
+conn = sqlite3.connect('optima.db')
 cursor = conn.cursor()
 
 #Enabling schema
@@ -57,6 +57,11 @@ class ScreenFour:
         self.lastnameLabel["font"] = self.fontepadrao
         self.lastnameLabel.pack(side=LEFT)
         
+        self.lastname = Entry(self.terceiroContainer)
+        self.lastname["width"] = 30
+        self.lastname["font"] = self.fontepadrao
+        self.lastname.pack(side=LEFT)
+        
         self.titleLabel = Label(self.quartoContainer)
         self.titleLabel["text"] = "Title"
         self.titleLabel["font"] = self.fontepadrao
@@ -70,9 +75,40 @@ class ScreenFour:
         self.botao = Button(self.quintoContainer)
         self.botao["text"] = "FINGERPRINT"
         self.botao["font"] = self.fontepadrao
-        self.botao["command"] =
+        self.botao["command"] = self.enrollmember
         self.botao["width"] = 30
         self.botao.pack()
         
-        self.home == Button(self.sextoContainer)
+        self.home = Button(self.sextoContainer)
+        self.home["text"] = "Main Menu"
+        self.home["font"] = self.fontepadrao
+        self.home["width"] = 12
+        self.home["command"] = fechar
+        self.home.pack()
         
+    def enrollmember(self):
+        vfirstname = self.firstname.get()
+        vlastname = self.lastname.get()
+        vtitle = self.title.get()
+        
+        cursor.execute("""
+            INSERT INTO optima (first_name, last_name, title)
+            VALUES (?, ?, ?)
+            """, (vfirstname, vlastname, vtitle))
+        conn.commit()
+        print("Dados cadastrados com sucesso")
+        conn.close()
+        
+def fechar():
+    root.destroy()
+        
+root = Tk()
+ScreenFour(root)
+root.title("Enroll Screen")
+root.geometry('478x270')
+root.mainloop()
+
+
+
+        
+    
