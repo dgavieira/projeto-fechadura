@@ -7,13 +7,34 @@
 
 from tkinter import *
 import sqlite3
+import tela03alt
 
-class ScreenFive:
-    def __init__(self,master):
-        self.widget1 = Frame(master)
-        self.widget
-        
-
+def telacinco():
+    class ScreenFive:
+        def __init__(self,master):
+            self.widget1 = Frame(master)
+            self.widget1.pack()
+            
+            self.msg = Label(self.widget1)
+            self.msg["text"] = "Waiting for Fingerprint..."
+            self.msg["font"] = ("Calibri","20","bold")
+            self.msg.pack()
+            
+            self.button = Button(self.widget1)
+            self.button["text"] = "OK"
+            self.button["font"] = ("Calibri", "10")
+            self.button["width"] = 10
+            self.button["command"] = self.mudarTexto
+            self.button.pack()
+            
+        def mudarTexto(self):
+            if self.msg["text"] == "Waiting for Fingerprint...":
+                self.msg["text"] = "Fingerprint registered"
+                print("Fingerprint Registered")
+                root.destroy()
+                tela03alt.telatres()
+            else:
+                self.msg["text"] = "Waiting for Fingerprint"
             
     root = Tk()
     ScreenFive(root)
