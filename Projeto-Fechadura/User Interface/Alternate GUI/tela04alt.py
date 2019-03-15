@@ -101,6 +101,7 @@ def telaquatro():
             conn.commit()
             print('Dados inseridos com sucesso.')
             conn.close()
+            fechar()
             tela05alt.telacinco()
         
     def returntohome():
