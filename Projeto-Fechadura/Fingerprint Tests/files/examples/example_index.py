@@ -11,12 +11,13 @@ All rights reserved.
 from pyfingerprint.pyfingerprint import PyFingerprint
 
 
+
 ## Shows the template index table
 ##
 
 ## Tries to initialize the sensor
 try:
-    f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
+    f = PyFingerprint('/dev/ttyAMA0',57600, 0xFFFFFFFF, 0x00000000)
 
     if ( f.verifyPassword() == False ):
         raise ValueError('The given fingerprint sensor password is wrong!')
