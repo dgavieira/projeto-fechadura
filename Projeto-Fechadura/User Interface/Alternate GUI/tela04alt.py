@@ -11,7 +11,7 @@ import tela01alt, tela05alt
 import sqlite3
 
 def telaquatro():
-    conn = sqlite3.connect('optima.db')
+    '''conn = sqlite3.connect('optima.db')
     cursor = conn.cursor()
 
     #Enabling schema
@@ -19,6 +19,7 @@ def telaquatro():
                 first_name TEXT NOT NULL,
                 last_name TEXT NOT NULL,
                 title TEXT NOT NULL)""")
+    '''
     
     class ScreenFour:
         def __init__(self, master = None):
@@ -78,7 +79,7 @@ def telaquatro():
             self.botao = Button(self.quintoContainer)
             self.botao["text"] = "FINGERPRINT"
             self.botao["font"] = ("Calibri", "16")
-            self.botao["command"] = self.enabledb
+            self.botao["command"] = self.getter
             self.botao["width"] = 30
             self.botao.pack()
             
@@ -88,12 +89,13 @@ def telaquatro():
             self.home["width"] = 12
             self.home["command"] = returntohome
             self.home.pack()
-    
-        def enabledb(self):
+            
+        def getter(self):
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()
             
+            '''
             cursor.execute("""
                 INSERT INTO optima (first_name, last_name, title)
                 VALUES (?, ?, ?)
@@ -103,6 +105,7 @@ def telaquatro():
             conn.close()
             fechar()
             tela05alt.telacinco()
+            '''
         
     def returntohome():
         fechar()
