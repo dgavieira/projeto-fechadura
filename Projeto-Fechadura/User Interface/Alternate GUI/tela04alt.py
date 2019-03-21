@@ -7,20 +7,9 @@
 #Autor: Diego Vieira
 
 from tkinter import *
-import tela01alt, tela05alt
-import sqlite3
+import tela01alt, tela04altcs
 
 def telaquatro():
-    '''conn = sqlite3.connect('optima.db')
-    cursor = conn.cursor()
-
-    #Enabling schema
-    cursor.execute("""CREATE TABLE IF NOT EXISTS optima (
-                first_name TEXT NOT NULL,
-                last_name TEXT NOT NULL,
-                title TEXT NOT NULL)""")
-    '''
-    
     class ScreenFour:
         def __init__(self, master = None):
             self.fontePadrao = ("Arial", "10")
@@ -94,19 +83,9 @@ def telaquatro():
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()
-            
-            '''
-            cursor.execute("""
-                INSERT INTO optima (first_name, last_name, title)
-                VALUES (?, ?, ?)
-                """, (p_first_name, p_last_name, p_title))
-            conn.commit()
-            print('Dados inseridos com sucesso.')
-            conn.close()
             fechar()
-            tela05alt.telacinco()
-            '''
-        
+            tela04altcs.telaquatrodois()
+            
     def returntohome():
         fechar()
         tela01alt.telaum()
