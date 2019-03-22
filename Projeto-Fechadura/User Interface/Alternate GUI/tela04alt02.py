@@ -48,6 +48,10 @@ def telaquatro():
             self.sextoContainer["padx"] = 20
             self.sextoContainer.pack()
             
+            self.setimoContainer = Frame(master)
+            self.setimoContainer["padx"] = 60
+            self.setimoContainer.pack()
+            
             #elementos do primeiro container
             self.titulo = Label(self.primeiroContainer, text="ENROLL")
             self.titulo["font"] = ("Arial", "10", "bold")
@@ -63,7 +67,7 @@ def telaquatro():
             self.firstname.pack(side=LEFT)
             
             #elementos do terceiro container
-             self.lastnameLabel = Label(self.terceiroContainer, text="Last Name", font=self.fontePadrao)
+            self.lastnameLabel = Label(self.terceiroContainer, text="Last Name", font=self.fontePadrao)
             self.lastnameLabel.pack(side=LEFT)
       
             self.lastname = Entry(self.terceiroContainer)
@@ -88,5 +92,62 @@ def telaquatro():
             self.botao["width"] = 30
             self.botao.pack()
             
-            #elementos do sexto cointainer
+            #elementos do sexto container
+            self.msg = Message(self.sextoContainer)
+            self.msg["text"] = "First Name: \n Last Name: \n Title: "
+            self.msg["relief"] = GROOVE
+            self.msg["width"] = 100
+            self.msg.pack()
             
+            #elementos do sétimo container
+            self.botao = Button(self.setimoContainer)
+            self.botao["text"] = "MAIN MENU"
+            self.botao["font"] = self.fontePadrao
+            self.botao["command"] = returntohome
+            self.botao["width"] = 10
+            self.botao.pack(side = LEFT)
+            
+            self.botao = Button(self.setimoContainer)
+            self.botao["text"] = "CANCEL"
+            self.botao["font"] = self.fontePadrao
+            #self.botao["command"] = 
+            self.botao["width"] = 10
+            self.botao.pack()
+            
+            self.botao = Button(self.setimoContainer)
+            self.botao["text"] = "FINGERPRINT"
+            self.botao["font"] = self.fontePadrao
+            self.botao["command"] = self.enabledb
+            self.botao["width"] = 10
+            self.botao.pack(side = RIGHT)
+            
+        def getter(self):
+            p_first_name = self.firstname.get()
+            p_last_name = self.lastname.get()
+            p_title = self.title.get()
+                
+        def enabledb(self):
+            cursor.execute("""
+                INSERT INTO optima (first_name, last_name, title)
+                VALUES (?, ?, ?)
+                """, (p_first_name, p_last_name, p_title))
+            conn.commit()
+            print('Dados inseridos com sucesso.')
+            conn.close()
+            
+            fechar()
+            tela05alt.telacinco()
+            
+    def returntohome():
+        fechar()
+        tela01alt.telaum()
+        
+    def fechar():
+        root.destroy()               
+            
+    root = Tk()
+    ScreenFour(root)
+    root.title("Enroll Screen")
+    root.geometry('478x270')
+    #root.overrideredirect(True)
+    root.mainloop()
