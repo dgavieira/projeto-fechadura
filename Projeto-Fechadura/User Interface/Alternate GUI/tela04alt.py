@@ -7,7 +7,17 @@
 #Autor: Diego Vieira
 
 from tkinter import *
-import tela01alt, tela04altcs
+import tela01alt, tela05alt
+import sqlite3
+
+conn = sqlite3.connect('optima.db')
+cursor = conn.cursor()
+
+#Enabling schema
+cursor.execute("""CREATE TABLE IF NOT EXISTS optima (
+            first_name TEXT NOT NULL,
+            last_name TEXT NOT NULL,
+            title TEXT NOT NULL)""")
 
 def telaquatro():
     class ScreenFour:
@@ -68,7 +78,7 @@ def telaquatro():
             self.botao = Button(self.quintoContainer)
             self.botao["text"] = "FINGERPRINT"
             self.botao["font"] = ("Calibri", "16")
-            self.botao["command"] = self.getter
+            self.botao["command"] = self.enabledb
             self.botao["width"] = 30
             self.botao.pack()
             
@@ -79,12 +89,21 @@ def telaquatro():
             self.home["command"] = returntohome
             self.home.pack()
             
-        def getter(self):
+        def enabledb(self):
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()
+            
+            cursor.execute("""
+                INSERT INTO optima (first_name, last_name, title)
+                VALUES (?, ?, ?)
+                """, (p_first_name, p_last_name, p_title))
+            conn.commit()
+            print('Dados inseridos com sucesso.')
+            conn.close()
+            
             fechar()
-            tela04altcs.telaquatrodois()
+            tela05alt.telacinco()
             
     def returntohome():
         fechar()
