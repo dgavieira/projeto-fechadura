@@ -45,8 +45,8 @@ def telaquatro():
             self.quintoContainer.pack()
             
             self.sextoContainer = Frame(master)
-            self.sextoContainer["padx"] = 20
-            self.sextoContainer.pack()
+            self.sextoContainer["padx"] = 40
+            self.sextoContainer.pack(fill = X, expand = YES)
             
             self.setimoContainer = Frame(master)
             self.setimoContainer["padx"] = 60
@@ -76,7 +76,7 @@ def telaquatro():
             self.lastname.pack(side=LEFT)
             
             #elementos do quarto container
-            self.titleLabel = Label(self.quartoContainer, text="Title", font=self.fontePadrao)
+            self.titleLabel = Label(self.quartoContainer, text="Title \t", font=self.fontePadrao)
             self.titleLabel.pack(side=LEFT)
       
             self.title = Entry(self.quartoContainer)
@@ -85,46 +85,68 @@ def telaquatro():
             self.title.pack(side=LEFT)
             
             #elementos do quinto container
-            self.botao = Button(self.quintoContainer)
-            self.botao["text"] = "LOAD"
-            self.botao["font"] = self.fontePadrao
-            #self.botao["command"] = 
-            self.botao["width"] = 30
-            self.botao.pack()
+            self.botao1 = Button(self.quintoContainer)
+            self.botao1["text"] = "LOAD"
+            self.botao1["font"] = self.fontePadrao
+            self.botao1["command"] = self.showinput
+            self.botao1["width"] = 30
+            self.botao1.pack()
             
             #elementos do sexto container
             self.msg = Message(self.sextoContainer)
             self.msg["text"] = "First Name: \n Last Name: \n Title: "
-            self.msg["relief"] = GROOVE
-            self.msg["width"] = 100
-            self.msg.pack()
+            self.msg["relief"] = SUNKEN
+            self.msg.pack(fill = X, expand = YES)
             
             #elementos do sétimo container
-            self.botao = Button(self.setimoContainer)
-            self.botao["text"] = "MAIN MENU"
-            self.botao["font"] = self.fontePadrao
-            self.botao["command"] = returntohome
-            self.botao["width"] = 10
-            self.botao.pack(side = LEFT)
+            self.botao2 = Button(self.setimoContainer)
+            self.botao2["text"] = "MAIN MENU"
+            self.botao2["font"] = self.fontePadrao
+            self.botao2["command"] = returntohome
+            self.botao2["width"] = 10
+            self.botao2.pack(side = LEFT)
             
-            self.botao = Button(self.setimoContainer)
-            self.botao["text"] = "CANCEL"
-            self.botao["font"] = self.fontePadrao
-            #self.botao["command"] = 
-            self.botao["width"] = 10
-            self.botao.pack()
+            self.botao3 = Button(self.setimoContainer)
+            self.botao3["text"] = "CANCEL"
+            self.botao3["font"] = self.fontePadrao
+            self.botao3["command"] = self.eraseinput
+            self.botao3["width"] = 10
+            self.botao3.pack(side = LEFT)
             
             self.botao = Button(self.setimoContainer)
             self.botao["text"] = "FINGERPRINT"
             self.botao["font"] = self.fontePadrao
             self.botao["command"] = self.enabledb
             self.botao["width"] = 10
-            self.botao.pack(side = RIGHT)
+            self.botao.pack(side = LEFT)
             
-        def getter(self):
+        def showinput(self):
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()
+            
+            if self.msg["text"] == "First Name: \n Last Name: \n Title: ":
+                self.msg["text"] = "First Name: \t" + p_first_name + "\n Last Name:\t" + p_last_name + "\n Title: \t" + p_title
+                self.botao1["state"] = DISABLED
+            else:
+                self.msg["text"] = "First Name: \n Last Name: \n Title: "
+                
+        def eraseinput(self):
+            p_first_name = self.firstname.get()
+            p_last_name = self.lastname.get()
+            p_title = self.title.get()
+            
+            if self.msg["text"] == "First Name: \t" + p_first_name + "\n Last Name:\t" + p_last_name + "\n Title: \t" + p_title:
+                self.msg["text"] = "First Name: \n Last Name: \n Title: "
+                self.botao1["state"] = NORMAL
+                self.firstname.delete(0, END)
+                self.lastname.delete(0, END)
+                self.title.delete(0, END)
+                del(p_first_name)
+                del(p_last_name)
+                del(p_title)
+            else:
+                self.msg["text"] = "First Name: \t" + p_first_name + "\n Last Name:\t" + p_last_name + "\n Title: \t" + p_title
                 
         def enabledb(self):
             cursor.execute("""
