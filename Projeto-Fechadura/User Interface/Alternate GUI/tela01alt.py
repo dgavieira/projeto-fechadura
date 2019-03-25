@@ -7,33 +7,33 @@
 
 from tkinter import *
 
-import tela02alt, fechar
+import tela02alt
 
 def telaum():
     class ScreenOne:
         def __init__(self, master=None):
             self.widget1 = Frame(master, background = "yellow")
-            self.widget1.pack()
+            self.widget1.pack(fill=X)
             
             self.button1 = Button(self.widget1, text = "OPTIONS")
             self.button1["font"]= ("Arial","24")
-            self.button1["width"] = 30
-            self.button1["height"] = 3
+            #self.button1["width"] = 30
+            self.button1["height"] = 2
             self.button1["command"] = doublefuncoptions
-            self.button1.pack()
+            self.button1.pack(side = TOP, fill=X)
             
             self.button2 = Button(self.widget1, text = "OPEN THE DOOR")
-            self.button2["width"] = 30
-            self.button2["height"] = 3
+            #self.button2["width"] = 30
+            self.button2["height"] = 2
             self.button2["font"]= ("Arial","24")
-            self.button2.pack()
+            self.button2.pack(side = TOP, fill=X)
             
             self.button3 = Button(self.widget1, text = "CANCEL")
-            self.button3["width"] = 50
+            #self.button3["width"] = 50
             self.button3["height"] = 2
             self.button3["font"]= ("Arial","12")
             self.button3["command"] = fechar
-            self.button3.pack()
+            self.button3.pack(side = TOP, fill=X)
     
     def doublefuncoptions():
         fechar()

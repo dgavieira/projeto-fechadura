@@ -6,7 +6,7 @@
 #Autor: Diego Vieira
 
 from tkinter import *
-import tela01alt, tela02alt, tela04alt
+import tela01alt, tela02alt, tela04alt02
 
 
 def telatres():
@@ -41,7 +41,7 @@ def telatres():
             
     def doublefuncenroll():
         fechar()
-        tela04alt.telaquatro()
+        tela04alt02.telaquatro()
         
     def doublefuncexit():
         fechar()

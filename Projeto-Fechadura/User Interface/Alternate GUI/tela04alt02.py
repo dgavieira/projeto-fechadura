@@ -149,6 +149,10 @@ def telaquatro():
                 self.msg["text"] = "First Name: \t" + p_first_name + "\n Last Name:\t" + p_last_name + "\n Title: \t" + p_title
                 
         def enabledb(self):
+            p_first_name = self.firstname.get()
+            p_last_name = self.lastname.get()
+            p_title = self.title.get()
+            
             cursor.execute("""
                 INSERT INTO optima (first_name, last_name, title)
                 VALUES (?, ?, ?)
