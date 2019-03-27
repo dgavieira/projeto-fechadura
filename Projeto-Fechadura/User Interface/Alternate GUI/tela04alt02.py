@@ -15,9 +15,14 @@ cursor = conn.cursor()
 
 #Enabling schema
 cursor.execute("""CREATE TABLE IF NOT EXISTS optima (
+            member_id integer PRIMARY KEY,
             first_name TEXT NOT NULL,
             last_name TEXT NOT NULL,
-            title TEXT NOT NULL)""")
+            title TEXT NOT NULL,
+            UNIQUE (first_name, last_name))"""
+            )
+conn.commit()
+conn.close()
 
 def telaquatro():
     class ScreenFour:
@@ -149,6 +154,9 @@ def telaquatro():
                 self.msg["text"] = "First Name: \t" + p_first_name + "\n Last Name:\t" + p_last_name + "\n Title: \t" + p_title
                 
         def enabledb(self):
+            conn = sqlite3.connect('optima.db')
+            cursor = conn.cursor()
+            
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()

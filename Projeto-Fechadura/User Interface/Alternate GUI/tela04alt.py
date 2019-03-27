@@ -18,6 +18,8 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS optima (
             first_name TEXT NOT NULL,
             last_name TEXT NOT NULL,
             title TEXT NOT NULL)""")
+conn.commit()
+conn.close()
 
 def telaquatro():
     class ScreenFour:
@@ -93,6 +95,9 @@ def telaquatro():
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()
+            
+            conn = sqlite3.connect('optima.db')
+            cursor = conn.cursor()
             
             cursor.execute("""
                 INSERT INTO optima (first_name, last_name, title)
