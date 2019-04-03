@@ -150,27 +150,43 @@ def telaquatro():
                 del(p_first_name)
                 del(p_last_name)
                 del(p_title)
+                self.botao["state"] = NORMAL
             else:
                 self.msg["text"] = "First Name: \t" + p_first_name + "\n Last Name:\t" + p_last_name + "\n Title: \t" + p_title
                 
         def enabledb(self):
-            conn = sqlite3.connect('optima.db')
-            cursor = conn.cursor()
-            
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()
             
-            cursor.execute("""
-                INSERT INTO optima (first_name, last_name, title)
-                VALUES (?, ?, ?)
-                """, (p_first_name, p_last_name, p_title))
-            conn.commit()
-            print('Dados inseridos com sucesso.')
-            conn.close()
-            
-            fechar()
-            tela05alt.telacinco()
+            try:
+                conn = sqlite3.connect('optima.db')
+                cursor = conn.cursor()
+                cursor.execute("""
+                    INSERT INTO optima (first_name, last_name, title)
+                    VALUES (?, ?, ?)
+                    """, (p_first_name, p_last_name, p_title))
+                conn.commit()
+                print('Dados inseridos com sucesso.')
+                conn.close()
+                
+                fechar()
+                tela05alt.telacinco()
+            except:
+                if self.msg["text"] == "First Name: \t" + p_first_name + "\n Last Name:\t" + p_last_name + "\n Title: \t" + p_title:
+                    self.msg["text"] = "O Nome inserido já está cadastrado. Insira novos dados"
+                    self.botao1["state"] = DISABLED
+                    self.botao["state"] = DISABLED
+                    self.firstname.delete(0, END)
+                    self.lastname.delete(0, END)
+                    self.title.delete(0, END)
+                    del(p_first_name)
+                    del(p_last_name)
+                    del(p_title)
+                    self.botao["state"] = NORMAL
+                    self.botao1["state"] = NORMAL
+                else:
+                    self.msg["text"] = "First Name: \n Last Name: \n Title: "
             
     def returntohome():
         fechar()
