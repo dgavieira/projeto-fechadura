@@ -121,5 +121,30 @@ def telaquatro()
             p_name = self.name.get()
             p_admin = self.var
             
+            if self.msg["text"] == "Name: " + p_name + "\n Admin: YES" or self.msg["text"] == "Name: " + p_name + "\n Admin: NO":
+                self.msg["text"] = "Name: \n Admin:"
+                self.botaoLoad["state"] = NORMAL
+                self.name.delete(0,END)
+                del(p_name)
+                del(p_admin)
+            else:
+                pass
             
+        def enabledb(self):
+            p_name = self.name.get()
+            p_admin = self.var
+            
+            try:
+                conn = sqlite3.connect('optima.db')
+                cursor = conn.cursor()
+                cursor.execute("""
+                    INSERT INTO optima (name, admin)
+                    VALUES (?, ?)
+                    """, (p_name, p_admin))
+                conn.commit()
+                print('Dados inseridos com sucesso')
+                conn.close()
+                
+                print('Abriu tela de Fingerprint')
+            except:
                 

@@ -172,7 +172,7 @@ def telaquatro():
                 
                 fechar()
                 tela05alt.telacinco()
-            except:
+            except: #conceitualmente errado MAS TÁ FUNCIONANDO
                 if self.msg["text"] == "First Name: \t" + p_first_name + "\n Last Name:\t" + p_last_name + "\n Title: \t" + p_title:
                     self.msg["text"] = "O Nome inserido já está cadastrado. Insira novos dados"
                     self.botao1["state"] = DISABLED
