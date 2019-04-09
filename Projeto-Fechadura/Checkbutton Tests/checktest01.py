@@ -6,7 +6,7 @@ cursor = conn.cursor()
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS optima (
                 member_id integer PRIMARY KEY,
-                name TEXT NOT NULL UNIQUE,
+                name TEXT NOT NULL,
                 admin integer)"""
                )
 conn.commit()

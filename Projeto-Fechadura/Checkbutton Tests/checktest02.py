@@ -4,9 +4,9 @@ import sqlite3
 conn = sqlite3.connect('optima2.db')
 cursor = conn.cursor()
 
-cursor.execute("""CREATE TABLE IF NOT EXISTS optima2(
-                member_id integer PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL UNIQUE,
+cursor.execute("""CREATE TABLE IF NOT EXISTS optima2 (
+                member_id integer PRIMARY KEY,
+                name TEXT NOT NULL,
                 admin integer)"""
     )
 conn.commit()
@@ -59,10 +59,10 @@ def telaquatro():
             self.check.pack(side = LEFT)
             
             #elementos do quarto container
-            elf.botaoMainMenu = Button(self.quartoContainer)
+            self.botaoMainMenu = Button(self.quartoContainer)
             self.botaoMainMenu["text"] = "MAIN MENU"
             self.botaoMainMenu["font"] = self.fontePadrao
-            #self.botaoMainMenu["command"] = returntohome
+            self.botaoMainMenu["command"] = returntohome
             self.botaoMainMenu["width"] = 10
             self.botaoMainMenu.pack(side = LEFT)
             
@@ -82,8 +82,28 @@ def telaquatro():
             
         def enabledb(self):
             p_name = self.name.get()
-            p_admin = self.var
-            
-            try:
-                conn
-            
+            p_admin = self.var.get()
+            conn = sqlite3.connect('optima2.db')
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT INTO optima2 (name, admin)
+                VALUES (?,?)
+                """, (p_name, p_admin))
+            conn.commit()
+            print('Dados inseridos com sucesso')
+            conn.close()
+            print('Abriu tela de Fingerprint')
+                
+    def returntohome():
+        fechar()
+        print("retornou ao menu inicial")
+    
+    def fechar():
+        root.destroy()
+
+    root = Tk()
+    ScreenFour(root)
+    root.title("Enroll Screen")
+    root.geometry('478x270')
+    #root.overrideredirect(True)
+    root.mainloop()
