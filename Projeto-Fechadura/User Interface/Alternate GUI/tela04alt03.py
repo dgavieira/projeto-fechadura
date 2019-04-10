@@ -62,13 +62,21 @@ def telaquatro():
             self.oitavoContainer.pack()
             
             #elementos do primeiro container
-            self.titulo = Label(self.primeiroContainer, text="ENROLL")
+            self.titulo = Label(self.primeiroContainer)
+            self.titulo["text"] = "ENROLL"
             self.titulo["font"] = ("Arial", "10", "bold")
             self.titulo.pack()
             
             #elementos do segundo container
-            self.firstnameLabel = Label(self.segundoContainer,text="First Name", font=self.fontePadrao)
+            self.firstnameLabel = Label(self.segundoContainer)
+            self.firstnameLabel["text"] = "First Name"
+            self.firstnameLabel["font"] = self.fontePadrao
             self.firstnameLabel.pack(side=LEFT)
+            
+            self.firstname = Entry(self.segundoContainer)
+            self.firstname["width"] = 30
+            self.firstname["font"] = self.fontePadrao
+            self.firstname.pack(side=LEFT)
             
             #elementos do terceiro container
             self.lastnameLabel = Label(self.terceiroContainer, text="Last Name", font=self.fontePadrao)
@@ -105,30 +113,40 @@ def telaquatro():
             self.botaoLoad.pack()
             
             #elementos do sétimo container
-            self.msg = Message(self.setimoontainer)
+            self.msg = Message(self.setimoContainer)
             self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
             self.msg["relief"] = SUNKEN
             self.msg.pack(fill = X, expand = YES)
             
             #elementos do oitavo container
-            self.botaoMainMenu = Button(self.quartoContainer)
+            self.botaoMainMenu = Button(self.oitavoContainer)
             self.botaoMainMenu["text"] = "MAIN MENU"
             self.botaoMainMenu["font"] = self.fontePadrao
-            self.botaoMainMenu["command"] = returntohome
+            #self.botaoMainMenu["command"] = returntohome
             self.botaoMainMenu["width"] = 10
             self.botaoMainMenu.pack(side = LEFT)
             
-            self.botaoCancel = Button(self.quartoContainer)
+            self.botaoCancel = Button(self.oitavoContainer)
             self.botaoCancel["text"] = "CANCEL"
             self.botaoCancel["font"] = self.fontePadrao
             #self.botaoCancel["command"] = self.eraseinput
             self.botaoCancel["width"] = 10
             self.botaoCancel.pack(side = LEFT)
             
-            self.botaoFingerprint = Button(self.quartoContainer)
+            self.botaoFingerprint = Button(self.oitavoContainer)
             self.botaoFingerprint["text"] = "FINGERPRINT"
             self.botaoFingerprint["font"] = self.fontePadrao
-            self.botaoFingerprint["command"] = self.enabledb
+            #self.botaoFingerprint["command"] = self.enabledb
             self.botaoFingerprint["width"] = 10
             self.botaoFingerprint.pack(side = LEFT)
+            
+        def showinput(self):
+            p_first_name = 
+            
+    root = Tk()
+    ScreenFour(root)
+    root.title("Enroll Screen")
+    root.geometry('478x270')
+    #root.overrideredirect(True)
+    root.mainloop()
             
