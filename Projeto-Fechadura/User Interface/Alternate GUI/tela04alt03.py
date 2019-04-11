@@ -79,7 +79,9 @@ def telaquatro():
             self.firstname.pack(side=LEFT)
             
             #elementos do terceiro container
-            self.lastnameLabel = Label(self.terceiroContainer, text="Last Name", font=self.fontePadrao)
+            self.lastnameLabel = Label(self.terceiroContainer)
+            self.lastnameLabel["text"] = "Last Name"
+            self.lastnameLabel["font"] = self.fontePadrao
             self.lastnameLabel.pack(side=LEFT)
       
             self.lastname = Entry(self.terceiroContainer)
@@ -88,7 +90,9 @@ def telaquatro():
             self.lastname.pack(side=LEFT)
             
             #elementos do quarto container
-            self.titleLabel = Label(self.quartoContainer, text="Title \t", font=self.fontePadrao)
+            self.titleLabel = Label(self.quartoContainer)
+            self.titleLabel["text"] = "Title"
+            self.titleLabel["font"] = self.fontePadrao
             self.titleLabel.pack(side=LEFT)
       
             self.title = Entry(self.quartoContainer)
@@ -141,8 +145,11 @@ def telaquatro():
             self.botaoFingerprint.pack(side = LEFT)
             
         def showinput(self):
-            p_first_name = 
-            
+            p_first_name = self.firstname.get()
+            p_last_name = self.lastname.get()
+            p_title = self.title.get()
+            p_admin = self.var.get()
+                
     root = Tk()
     ScreenFour(root)
     root.title("Enroll Screen")
