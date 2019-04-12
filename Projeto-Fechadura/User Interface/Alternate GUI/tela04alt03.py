@@ -91,7 +91,7 @@ def telaquatro():
             
             #elementos do quarto container
             self.titleLabel = Label(self.quartoContainer)
-            self.titleLabel["text"] = "Title"
+            self.titleLabel["text"] = "Title\t"
             self.titleLabel["font"] = self.fontePadrao
             self.titleLabel.pack(side=LEFT)
       
@@ -112,7 +112,7 @@ def telaquatro():
             self.botaoLoad = Button(self.sextoContainer)
             self.botaoLoad["text"] = "LOAD"
             self.botaoLoad["font"] = self.fontePadrao
-            #self.botaoLoad["command"] = self.showinput
+            self.botaoLoad["command"] = self.showinput
             self.botaoLoad["width"] = 30
             self.botaoLoad.pack()
             
@@ -133,7 +133,7 @@ def telaquatro():
             self.botaoCancel = Button(self.oitavoContainer)
             self.botaoCancel["text"] = "CANCEL"
             self.botaoCancel["font"] = self.fontePadrao
-            #self.botaoCancel["command"] = self.eraseinput
+            self.botaoCancel["command"] = self.eraseinput
             self.botaoCancel["width"] = 10
             self.botaoCancel.pack(side = LEFT)
             
@@ -149,7 +149,48 @@ def telaquatro():
             p_last_name = self.lastname.get()
             p_title = self.title.get()
             p_admin = self.var.get()
+            
+            if self.msg["text"] == "First Name: \n Last Name: \n Title: \n Admin:":
+                if p_admin == 1:
+                    self.msg["text"] = "First Name: \t" + p_first_name + "\n Last Name: \t" + p_last_name + "\n Title: \t" + p_title + "\n Admin: YES"
+                    self.botaoLoad["state"] = DISABLED
+                if p_admin == 0:
+                    self.msg["text"] = "First Name: \t" + p_first_name + "\n Last Name: \t" + p_last_name + "\n Title: \t" + p_title + "\n Admin: NO"
+                    self.botaoLoad["state"] = DISABLED
+            else:
+                self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
                 
+        def eraseinput(self):
+            p_first_name = self.firstname.get()
+            p_last_name = self.lastname.get()
+            p_title = self.title.get()
+            p_admin = self.var.get()
+            
+            if self.msg["text"] == "First Name: \t" + p_first_name + "\n Last Name: \t" + p_last_name + "\n Title: \t" + p_title + "\n Admin: YES":
+                self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
+                self.botaoLoad["state"] = NORMAL
+                self.firstname.delete(0,END)
+                self.lastname.delete(0,END)
+                self.title.delete(0,END)
+                del(p_first_name)
+                del(p_last_name)
+                del(p_title)
+                del(p_admin)
+                self.botaoFingerprint["state"] = NORMAL
+            elif self.msg["text"] == "First Name: \t" + p_first_name + "\n Last Name: \t" + p_last_name + "\n Title: \t" + p_title + "\n Admin: NO":
+                self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
+                self.botaoLoad["state"] = NORMAL
+                self.firstname.delete(0,END)
+                self.lastname.delete(0,END)
+                self.title.delete(0,END)
+                del(p_first_name)
+                del(p_last_name)
+                del(p_title)
+                del(p_admin)
+                self.botaoFingerprint["state"] = NORMAL
+            else:
+                pass
+            
     root = Tk()
     ScreenFour(root)
     root.title("Enroll Screen")

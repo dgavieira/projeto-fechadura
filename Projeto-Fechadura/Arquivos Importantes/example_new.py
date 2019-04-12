@@ -25,20 +25,20 @@ def example_new():
     try:
         f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
 
-            if ( f.verifyPassword() == False ):
-               raise ValueError('The given fingerprint sensor password is wrong!')
-               GPIO.output(40,1)
-               time.sleep(tempo)
-               GPIO.output(40,0)
-               time.sleep(tempo)
-               GPIO.output(40,1)
-               time.sleep(tempo)
-                GPIO.output(40,0)
+        if ( f.verifyPassword() == False ):
+           raise ValueError('The given fingerprint sensor password is wrong!')
+           GPIO.output(40,1)
+           time.sleep(tempo)
+           GPIO.output(40,0)
+           time.sleep(tempo)
+           GPIO.output(40,1)
+           time.sleep(tempo)
+            GPIO.output(40,0)
 
-except Exception as e:
-    print('The fingerprint sensor could not be initialized!')
-    print('Exception message: ' + str(e))
-    exit(1)
+    except Exception as e:
+        print('The fingerprint sensor could not be initialized!')
+        print('Exception message: ' + str(e))
+        exit(1)
 
 ## Gets some sensor information
 print('Currently used templates: ' + str(f.getTemplateCount()) +'/'+ str(f.getStorageCapacity()))
