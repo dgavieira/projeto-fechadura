@@ -19,6 +19,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS optima (
             first_name TEXT NOT NULL,
             last_name TEXT NOT NULL,
             title TEXT NOT NULL,
+            admin integer,
             UNIQUE (first_name, last_name))"""
             )
 conn.commit()
@@ -126,7 +127,7 @@ def telaquatro():
             self.botaoMainMenu = Button(self.oitavoContainer)
             self.botaoMainMenu["text"] = "MAIN MENU"
             self.botaoMainMenu["font"] = self.fontePadrao
-            #self.botaoMainMenu["command"] = returntohome
+            self.botaoMainMenu["command"] = returntohome
             self.botaoMainMenu["width"] = 10
             self.botaoMainMenu.pack(side = LEFT)
             
@@ -140,7 +141,7 @@ def telaquatro():
             self.botaoFingerprint = Button(self.oitavoContainer)
             self.botaoFingerprint["text"] = "FINGERPRINT"
             self.botaoFingerprint["font"] = self.fontePadrao
-            #self.botaoFingerprint["command"] = self.enabledb
+            self.botaoFingerprint["command"] = self.enabledb
             self.botaoFingerprint["width"] = 10
             self.botaoFingerprint.pack(side = LEFT)
             
@@ -152,10 +153,10 @@ def telaquatro():
             
             if self.msg["text"] == "First Name: \n Last Name: \n Title: \n Admin:":
                 if p_admin == 1:
-                    self.msg["text"] = "First Name: \t" + p_first_name + "\n Last Name: \t" + p_last_name + "\n Title: \t" + p_title + "\n Admin: YES"
+                    self.msg["text"] = "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: YES"
                     self.botaoLoad["state"] = DISABLED
                 if p_admin == 0:
-                    self.msg["text"] = "First Name: \t" + p_first_name + "\n Last Name: \t" + p_last_name + "\n Title: \t" + p_title + "\n Admin: NO"
+                    self.msg["text"] = "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: NO"
                     self.botaoLoad["state"] = DISABLED
             else:
                 self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
@@ -166,9 +167,10 @@ def telaquatro():
             p_title = self.title.get()
             p_admin = self.var.get()
             
-            if self.msg["text"] == "First Name: \t" + p_first_name + "\n Last Name: \t" + p_last_name + "\n Title: \t" + p_title + "\n Admin: YES":
+            if self.msg["text"] == "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: YES":
                 self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
                 self.botaoLoad["state"] = NORMAL
+                self.check.toggle()
                 self.firstname.delete(0,END)
                 self.lastname.delete(0,END)
                 self.title.delete(0,END)
@@ -190,7 +192,63 @@ def telaquatro():
                 self.botaoFingerprint["state"] = NORMAL
             else:
                 pass
-            
+        
+        def enabledb(self):
+            p_first_name = self.firstname.get()
+            p_last_name = self.lastname.get()
+            p_title = self.title.get()
+            p_admin = self.var.get()
+            try:
+                conn = sqlite3.connect('optima.db')
+                cursor = conn.cursor()
+                cursor.execute("""
+                    INSERT INTO optima (first_name, last_name, title, admin)
+                    VALUES (?, ?, ?, ?)
+                    """, (p_first_name, p_last_name, p_title, p_admin)
+                    )
+                conn.commit()
+                print("Dados inseridos com sucesso.")
+                conn.close()
+                fechar()
+                tela05alt.telacinco()   
+            except:
+                if self.msg["text"] == "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: YES":
+                    self.msg["text"] = "O Nome inserido já está cadastrado. Insira novos dados."
+                    self.botaoLoad["state"] = DISABLED
+                    self.botaoFingerprint["state"] = DISABLED
+                    self.check.toggle()
+                    self.firstname.delete(0,END)
+                    self.lastname.delete(0,END)
+                    self.title.delete(0,END)
+                    del(p_first_name)
+                    del(p_last_name)
+                    del(p_title)
+                    del(p_admin)
+                    self.botaoFingerprint["state"] = NORMAL
+                    self.botaoLoad["state"] = NORMAL
+                elif self.msg["text"] == "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: NO":
+                    self.msg["text"] = "O Nome inserido já está cadastrado. Insira novos dados."
+                    self.botaoLoad["state"] = DISABLED
+                    self.botaoFingerprint["state"] = DISABLED
+                    self.firstname.delete(0,END)
+                    self.lastname.delete(0,END)
+                    self.title.delete(0,END)
+                    del(p_first_name)
+                    del(p_last_name)
+                    del(p_title)
+                    del(p_admin)
+                    self.botaoFingerprint["state"] = NORMAL
+                    self.botaoLoad["state"] = NORMAL
+                else:
+                    self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
+                    
+    def returntohome():
+        fechar()
+        tela01alt.telaum()
+    
+    def fechar():
+        root.destroy()
+        
     root = Tk()
     ScreenFour(root)
     root.title("Enroll Screen")

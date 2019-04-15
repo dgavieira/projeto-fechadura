@@ -160,7 +160,7 @@ def telaquatro():
             p_title = self.title.get()
             
             try:
-                conn = sqlite3.connect('optima.db')
+                conn = sqlite3.connect('optima.db')	
                 cursor = conn.cursor()
                 cursor.execute("""
                     INSERT INTO optima (first_name, last_name, title)
