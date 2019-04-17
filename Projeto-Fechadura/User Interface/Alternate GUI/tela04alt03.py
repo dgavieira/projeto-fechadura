@@ -7,7 +7,7 @@
 #Autor: Diego Vieira
 
 from tkinter import *
-import tela01alt, tela05alt
+import tela01alt, tela05alt02
 import sqlite3
 
 conn = sqlite3.connect('optima.db')
@@ -210,7 +210,7 @@ def telaquatro():
                 print("Dados inseridos com sucesso.")
                 conn.close()
                 fechar()
-                tela05alt.telacinco()   
+                tela05alt02.telacinco()   
             except:
                 if self.msg["text"] == "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: YES":
                     self.msg["text"] = "O Nome inserido já está cadastrado. Insira novos dados."
