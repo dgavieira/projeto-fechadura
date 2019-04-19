@@ -8,6 +8,7 @@
 
 from tkinter import *
 import tela04alt03, tela03alt
+import os
 
 def telacinco():
     class ScreenFive:
@@ -49,7 +50,7 @@ def telacinco():
             self.runButton = Button(self.terceiroContainer)
             self.runButton["text"] = "RUN"
             self.runButton["font"] = self.fonteBotoes
-            #self.runButton["command"] =
+            self.runButton["command"] = self.runshell
             self.runButton["width"] = 10
             self.runButton.pack(side = LEFT)
             
@@ -63,6 +64,14 @@ def telacinco():
         def retscreenfour(self):
             fechar()
             tela04alt03.telaquatro()
+            
+        def runshell(self):
+            p = os.popen('python fpsim.py','r')
+            for l in p.xreadlines():
+                self.prompt.insert(END, '%s\n' % l.rstrip())
+                self.prompt.see(END)
+                self.prompt.update_idletasks()
+            
             
         def conclude(self):
             fechar()
