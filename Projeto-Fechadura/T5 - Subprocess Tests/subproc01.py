@@ -7,6 +7,7 @@ def get_info(arg):
     print(tfield.get("1.0", "current lineend"))
     
 root = tkinter.Tk()
+frame = tkinter.Frame(root)
 tfield = tkinter.Text(root)
 tfield.pack()
 f = os.popen('ping %s' % (ip))

@@ -66,13 +66,20 @@ def telacinco():
             tela04alt03.telaquatro()
             
         def runshell(self):
-            p = os.popen('python fpsim.py','r')
-            for l in p.xreadlines():
-                self.prompt.insert(END, '%s\n' % l.rstrip())
-                self.prompt.see(END)
-                self.prompt.update_idletasks()
+            #ip = '192.168.1.1'
+            def get_info(arg):
+                print(tfield.get("1.0", "current lineend"))
             
+            f = os.popen('python3 fpsim.py')
+            for line in f:
+                line = line.strip()
+                if line:
+                    self.prompt.insert("end", line+"\n")
+                    self.prompt.see(END)
+                    #tfield.get("current linestart","current lineend")
+            tfield.bind("<Return>", get_info)
             
+
         def conclude(self):
             fechar()
             tela03alt.telatres()
