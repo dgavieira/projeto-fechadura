@@ -1,5 +1,6 @@
 from tkinter import *
 import sys, os, subprocess
+from fpsim import fptest
 
 def enroll_screen():
     class EnrScrn():
@@ -40,7 +41,7 @@ def enroll_screen():
             self.runButton = Button(self.terceiroContainer)
             self.runButton["text"] = "RUN"
             self.runButton["font"] = self.fonteBotoes
-            self.runButton["command"] = self.run_process
+            self.runButton["command"] = self.runshell
             self.runButton["width"] = 10
             self.runButton.pack(side=LEFT)
             
@@ -54,13 +55,10 @@ def enroll_screen():
         def retscreenfour(self):
             self.prompt.delete(1.0,END)
             self.prompt.insert(END, "retornou à tela quatro")
-            
+                
         def runshell(self):
-            f = open('fpsim.py','r')
-            
-        def run_process(self):
             self.prompt.delete(1.0,END)
-            self.prompt.insert(INSERT, self.runshell())
+            self.prompt.insert(INSERT, fptest())
             
         def conclude(self):
             self.prompt.delete(1.0,END)
