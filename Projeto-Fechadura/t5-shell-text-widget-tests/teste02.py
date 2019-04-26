@@ -1,4 +1,6 @@
-import os
 import subprocess
 
-subprocess.call('python3', 'fpsim.py', stdout = subprocess.PIPE)
+path = "python3 fpsim.py"
+process = subprocess.Popen(path.split(), stdout=subprocess.PIPE)
+output, error = process.communicate()
+print(stdout)
