@@ -1,6 +1,6 @@
 import subprocess
 
-path = "python3 fpsim.py"
-process = subprocess.Popen(path.split(), stdout=subprocess.PIPE)
-output, error = process.communicate()
-print(stdout)
+process = subprocess.Popen(['lxterminal','-e','python3','fpsim.py'], stdout = subprocess.PIPE, stderr = subprocess.PIPE, stdin = subprocess.PIPE)
+stdin, stdout, stderr = process.communicate()
+line = process.stdout.readline()
+print(line)

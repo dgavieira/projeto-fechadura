@@ -1,6 +1,5 @@
 from tkinter import *
 import sys, os, subprocess
-from fpsim import fptest
 
 def enroll_screen():
     class EnrScrn():
@@ -58,7 +57,11 @@ def enroll_screen():
                 
         def runshell(self):
             self.prompt.delete(1.0,END)
-            self.prompt.insert(INSERT, fptest())
+            process = subprocess.Popen(['python3','fpsim.py'], stdout = subprocess.PIPE, stderr = subprocess.PIPE, stdin = subprocess.PIPE)
+            stdin, stdout, stderr = process.communicate()
+            #stdout, stderr = process.communicate()
+            line = process.stdout.readline()
+            self.prompt.insert(END, line)
             
         def conclude(self):
             self.prompt.delete(1.0,END)
