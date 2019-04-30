@@ -8,7 +8,7 @@
 
 from tkinter import *
 import tela04alt03, tela03alt
-import os
+import subprocess, sys, os
 
 def telacinco():
     class ScreenFive:
@@ -66,20 +66,21 @@ def telacinco():
             tela04alt03.telaquatro()
             
         def runshell(self):
-            #ip = '192.168.1.1'
-            def get_info(arg):
-                print(tfield.get("1.0", "current lineend"))
+            self.prompt.delete(1.0,END)
+            msg = "Executing Fingerprint Enroll"
+            path = '/home/pi/git-batch/pyfingerprint/src/files/examples/example_enroll.py'
+            process = subprocess.Popen(['lxterminal','-e','python3', path],
+                                                               stdout = subprocess.PIPE,
+                                                               stderr = subprocess.PIPE,
+                                                               stdin = subprocess.PIPE)
+            self.prompt.insert(END, msg)
+            process.stdin.write(b'\n')
+            process.stdin.flush()
+            line = process.stdout.readline()
+            #stdin, stdout, stderr = process.communicate()
+            #stdout, stderr = process.communicate()
+            #line = process.stdout.readline()
             
-            f = os.popen('python3 fpsim.py')
-            for line in f:
-                line = line.strip()
-                if line:
-                    self.prompt.insert("end", line+"\n")
-                    self.prompt.see(END)
-                    #tfield.get("current linestart","current lineend")
-            tfield.bind("<Return>", get_info)
-            
-
         def conclude(self):
             fechar()
             tela03alt.telatres()

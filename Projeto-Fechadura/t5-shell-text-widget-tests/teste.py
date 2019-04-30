@@ -54,14 +54,24 @@ def enroll_screen():
         def retscreenfour(self):
             self.prompt.delete(1.0,END)
             self.prompt.insert(END, "retornou à tela quatro")
+            
+        def get_info(self):
+            print(self.prompt.get("1.0","current lineend"))
                 
         def runshell(self):
+            path = ''
+            process = subprocess.Popen(['python3','fpsim.py'], stdout = subprocess.PIPE,
+                                                               stderr = subprocess.PIPE,
+                                                               stdin = subprocess.PIPE)
             self.prompt.delete(1.0,END)
-            process = subprocess.Popen(['python3','fpsim.py'], stdout = subprocess.PIPE, stderr = subprocess.PIPE, stdin = subprocess.PIPE)
-            stdin, stdout, stderr = process.communicate()
-            #stdout, stderr = process.communicate()
+            process.stdin.write(b'\n')
+            process.stdin.flush()
             line = process.stdout.readline()
-            self.prompt.insert(END, line)
+            msg = "Executing Fingerprint Enroll"
+            #stdin, stdout, stderr = process.communicate()
+            #stdout, stderr = process.communicate()
+            #line = process.stdout.readline()
+            self.prompt.insert(END, msg)
             
         def conclude(self):
             self.prompt.delete(1.0,END)
