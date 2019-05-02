@@ -73,10 +73,13 @@ def telacinco():
                                                                stdout = subprocess.PIPE,
                                                                stderr = subprocess.PIPE,
                                                                stdin = subprocess.PIPE)
+            
             self.prompt.insert(END, msg)
             process.stdin.write(b'\n')
             process.stdin.flush()
-            line = process.stdout.readline()
+            stdout, stderr = process.communicate()
+            #line = process.stdout.readline()
+            #self.prompt.insert(END, line)
             #stdin, stdout, stderr = process.communicate()
             #stdout, stderr = process.communicate()
             #line = process.stdout.readline()

@@ -11,6 +11,7 @@ def enroll_screen():
             self.segundoContainer = Frame(master)
             self.segundoContainer["padx"] = 20
             self.segundoContainer.pack(fill = X, expand = YES)
+            self.segundoContainer.update_idletasks()
             
             self.terceiroContainer = Frame(master)
             self.terceiroContainer["padx"] = 20
@@ -71,7 +72,9 @@ def enroll_screen():
             #stdin, stdout, stderr = process.communicate()
             #stdout, stderr = process.communicate()
             #line = process.stdout.readline()
-            self.prompt.insert(END, msg)
+            self.prompt.insert(END, line)
+            self.prompt.see(END)
+            self.prompt.update_idletasks()
             
         def conclude(self):
             self.prompt.delete(1.0,END)
