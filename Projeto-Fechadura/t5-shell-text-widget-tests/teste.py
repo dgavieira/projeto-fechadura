@@ -58,8 +58,17 @@ def enroll_screen():
             
         def get_info(self):
             print(self.prompt.get("1.0","current lineend"))
-                
+            
         def runshell(self):
+            process = subprocess.Popen(['python3','fpsim.py'], stdout = subprocess.PIPE,
+                                                               stderr = subprocess.PIPE,
+                                                               stdin = subprocess.PIPE)
+            
+            stdin, stdout, stderr = process.communicate("input")
+            line = process.stdout.readline()
+            self.prompt.insert(END, line)
+                
+        '''def runshell(self):
             path = ''
             process = subprocess.Popen(['python3','fpsim.py'], stdout = subprocess.PIPE,
                                                                stderr = subprocess.PIPE,
@@ -74,7 +83,7 @@ def enroll_screen():
             #line = process.stdout.readline()
             self.prompt.insert(END, line)
             self.prompt.see(END)
-            self.prompt.update_idletasks()
+            self.prompt.update_idletasks()'''
             
         def conclude(self):
             self.prompt.delete(1.0,END)
