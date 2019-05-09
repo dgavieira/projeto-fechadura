@@ -1,7 +1,7 @@
-import tela04teste
+import tela05teste
 
 def main():
-    tela04teste.tela_quatro()
+    tela05teste.tela_cinco()
     
 if __name__ == "__main__":
     main()
