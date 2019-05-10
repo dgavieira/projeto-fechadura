@@ -99,7 +99,15 @@ def tela_cinco():
             conn = sqlite3.connect('optima.db')
             cursor = conn.cursor()
             
-            
+            try:
+                cursor.execute("""
+                ALTER TABLE optima
+                ADD COLUMN pos_number INTEGER""")
+                print("added new column")
+            except:
+                print("column already exists")
+                pass
+                
         def conclude(self):
             fechar()
             #tela03alt.telatres()
