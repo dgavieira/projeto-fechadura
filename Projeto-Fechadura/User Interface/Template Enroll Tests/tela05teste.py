@@ -1,7 +1,7 @@
 from tkinter import *
 import subprocess, sys, os
 import sqlite3
-from fpsimtest import main
+from fpsimtest import enroll
 
 def tela_cinco():
     class ScreenFive:
@@ -92,21 +92,6 @@ def tela_cinco():
             #stdin, stdout, stderr = process.communicate()
             #stdout, stderr = process.communicate()
             #line = process.stdout.readline()
-            flag = temp
-            return flag
-        
-        def load_db(self):
-            conn = sqlite3.connect('optima.db')
-            cursor = conn.cursor()
-            
-            try:
-                cursor.execute("""
-                ALTER TABLE optima
-                ADD COLUMN pos_number INTEGER""")
-                print("added new column")
-            except:
-                print("column already exists")
-                pass
                 
         def conclude(self):
             fechar()

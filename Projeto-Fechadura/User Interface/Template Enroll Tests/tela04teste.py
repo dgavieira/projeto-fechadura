@@ -1,5 +1,6 @@
 from tkinter import *
 import sqlite3
+import tela05teste
 
 conn = sqlite3.connect('optima.db')
 cursor = conn.cursor()
@@ -187,7 +188,7 @@ def tela_quatro():
             
         def enable_db(self):
             pfirstname = self.firstname.get()
-            plast_name = self.lastname.get()
+            plastname = self.lastname.get()
             ptitle = self.title.get()
             padmin = self.var.get()
             

@@ -13,8 +13,8 @@ import hashlib
 from pyfingerprint.pyfingerprint import PyFingerprint
 
 GPIO.setmode (GPIO.BOARD)
-GPIO.setup (38,GPIO.OUT)
-GPIO.setup (40,GPIO.OUT)
+GPIO.setup (38,GPIO.OUT) ## led vermelho
+GPIO.setup (40,GPIO.OUT) ## pino de ativação da trava
 tempo=1
 
 ## Search for a finger
@@ -33,7 +33,7 @@ def example_new():
            time.sleep(tempo)
            GPIO.output(40,1)
            time.sleep(tempo)
-            GPIO.output(40,0)
+           GPIO.output(40,0)
 
     except Exception as e:
         print('The fingerprint sensor could not be initialized!')
