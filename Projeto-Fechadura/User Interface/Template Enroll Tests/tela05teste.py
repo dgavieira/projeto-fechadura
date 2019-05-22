@@ -73,15 +73,16 @@ def tela_cinco():
         def run_shell(self):
             self.prompt.delete(1.0,END)
             msg = "Executing Fingerprint Enroll"
-            #path = '/home/pi/git-batch/pyfingerprint/src/files/examples/example_enroll.py'
-            '''process = subprocess.Popen(['lxterminal','-e','python3', path],
+            path = '/home/pi/git-batch/projeto-fechadura/Projeto-Fechadura/pyfingerprint/src/files/examples/example_enroll.py'
+            process = subprocess.Popen(['lxterminal','-e','python3', path],
                                                                stdout = subprocess.PIPE,
                                                                stderr = subprocess.PIPE,
-                                                               stdin = subprocess.PIPE)'''
-            process = subprocess.Popen(['lxterminal','-e','python3','fpsimtest.py'],
+                                                               stdin = subprocess.PIPE)
+            
+            '''process = subprocess.Popen(['lxterminal','-e','python3','fpsimtest.py'],
                                        stdout = subprocess.PIPE,
                                        stderr = subprocess.PIPE,
-                                       stdin = subprocess.PIPE)
+                                       stdin = subprocess.PIPE)'''
             
             self.prompt.insert(END, msg)
             process.stdin.write(b'\n')

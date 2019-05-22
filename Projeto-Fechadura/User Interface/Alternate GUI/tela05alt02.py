@@ -26,6 +26,10 @@ def telacinco():
             self.terceiroContainer["padx"] = 20
             self.terceiroContainer.pack()
             
+            self.quartoContainer = Frame(master)
+            self.quartoContainer["padx"] = 20
+            self.quartoContainer.pack()
+            
             #elementos do primeiro Container
             self.titulo = Label(self.primeiroContainer)
             self.titulo["text"] = "FINGERPRINT ENROLL"
@@ -43,32 +47,41 @@ def telacinco():
             self.returnButton = Button(self.terceiroContainer)
             self.returnButton["text"] = "RETURN"
             self.returnButton["font"] = self.fonteBotoes
-            self.returnButton["command"] = self.retscreenfour
+            self.returnButton["command"] = self.ret_screen_four
             self.returnButton["width"] = 10
             self.returnButton.pack(side = LEFT)
             
             self.runButton = Button(self.terceiroContainer)
             self.runButton["text"] = "RUN"
             self.runButton["font"] = self.fonteBotoes
-            self.runButton["command"] = self.runshell
+            self.runButton["command"] = self.run_shell
             self.runButton["width"] = 10
             self.runButton.pack(side = LEFT)
             
-            self.okButton = Button(self.terceiroContainer)
+            self.loadButton = Button(self.terceiroContainer)
+            self.loadButton["text"] = "LOAD"
+            self.loadButton["font"] = self.fonteBotoes
+            #self.loadButton["command"] = self.load_db
+            self.loadButton["width"] = 10
+            self.loadButton.pack(side = LEFT)
+                        
+            #elementos do quarto container
+            self.okButton = Button(self.quartoContainer)
             self.okButton["text"] = "OK"
             self.okButton["font"] = self.fonteBotoes
             self.okButton["command"] = self.conclude
             self.okButton["width"] = 10
-            self.okButton.pack(side = LEFT)
+            self.okButton.pack()
             
-        def retscreenfour(self):
+            
+        def ret_screen_four(self):
             fechar()
             tela04alt03.telaquatro()
             
-        def runshell(self):
+        def run_shell(self):
             self.prompt.delete(1.0,END)
             msg = "Executing Fingerprint Enroll"
-            path = '/home/pi/git-batch/pyfingerprint/src/files/examples/example_enroll.py'
+            path = '/home/pi/git-batch/projeto-fechadura/Projeto-Fechadura/pyfingerprint/src/files/examples/example_enroll.py'
             process = subprocess.Popen(['lxterminal','-e','python3', path],
                                                                stdout = subprocess.PIPE,
                                                                stderr = subprocess.PIPE,

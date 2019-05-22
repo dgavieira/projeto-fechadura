@@ -18,7 +18,6 @@ def enroll():
         print("column already exists")
         pass
     conn.commit()
-    
     cursor.execute("""
         UPDATE optima
         SET pos_number = (?)
