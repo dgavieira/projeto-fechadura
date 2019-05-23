@@ -108,4 +108,4 @@ def tela_cinco():
     root.geometry('478x270')
     #root.overrideredirect(True)
     root.mainloop()
-    
+     
