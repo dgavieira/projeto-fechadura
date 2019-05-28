@@ -8,7 +8,7 @@
 
 from tkinter import *
 import tela01alt, tela05alt02
-import sqlite3
+import sqlite3, logging, time
 
 conn = sqlite3.connect('optima.db')
 cursor = conn.cursor()
@@ -198,19 +198,45 @@ def telaquatro():
             p_last_name = self.lastname.get()
             p_title = self.title.get()
             p_admin = self.var.get()
+            
+            #converte as strings para minusculas
+            pfirstname = p_first_name.casefold()
+            plastname = p_last_name.casefold()
+            ptitle = p_title.casefold()
+            
             try:
                 conn = sqlite3.connect('optima.db')
                 cursor = conn.cursor()
                 cursor.execute("""
                     INSERT INTO optima (first_name, last_name, title, admin)
                     VALUES (?, ?, ?, ?)
-                    """, (p_first_name, p_last_name, p_title, p_admin)
+                    """, (pfirst_name, plast_name, ptitle, p_admin)
                     )
                 conn.commit()
                 print("Dados inseridos com sucesso.")
                 conn.close()
                 fechar()
-                tela05alt02.telacinco()   
+                
+                #Logging Configuration
+                #logging.basicConfig(filename = 'datalog.txt', format = '%(asctime)s  %(levelname)s:  %(message)s', datefmt = '%d/%m/%Y %H:%M:%S',level=logging.DEBUG)
+                #creating custom logger
+                logger = logging.getLogger(__name__)
+                #handler setting
+                f_handler = logging.FileHandler('datalog.txt')
+                f_handler.setLevel(logging.DEBUG)
+                #setting format
+                f_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s -- %(message)s','%d/%m/%Y %H:%M:%S')
+                f_handler.setFormatter(f_format)
+                #Add loggers to the handler
+                logger.addHandler(f_handler)
+
+                if p_admin == 1:
+                    logger.info("First Name: %s \tLast Name: %s \tTitle: %s \tAdmin:YES", p_first_name, p_last_name, p_title)
+                if p_admin == 0:
+                    logger.info("First Name: %s \tLast Name: %s \tTitle: %s \tAdmin:NO", p_first_name, p_last_name, p_title)
+
+                tela05alt02.telacinco()
+                
             except:
                 if self.msg["text"] == "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: YES":
                     self.msg["text"] = "O Nome inserido já está cadastrado. Insira novos dados."

@@ -1,6 +1,7 @@
 from tkinter import *
 import sqlite3
 import tela05teste
+import logging, time
 
 conn = sqlite3.connect('optima.db')
 cursor = conn.cursor()
@@ -12,8 +13,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS optima (
             last_name TEXT NOT NULL,
             title TEXT NOT NULL,
             admin integer,
-            UNIQUE (first_name, last_name))"""
-            )
+            UNIQUE (first_name, last_name))""")
 conn.commit()
 conn.close()
 
@@ -192,6 +192,25 @@ def tela_quatro():
             ptitle = self.title.get()
             padmin = self.var.get()
             
+            #Logging Configuration
+            #logging.basicConfig(filename = 'datalog.txt', format = '%(asctime)s  %(levelname)s:  %(message)s', datefmt = '%d/%m/%Y %H:%M:%S',level=logging.DEBUG)
+            #creating custom logger
+            logger = logging.getLogger(__name__)
+            #handler setting
+            f_handler = logging.FileHandler('datalog.txt')
+            f_handler.setLevel(logging.DEBUG)
+            #setting format
+            f_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s -- %(message)s','%d/%m/%Y %H:%M:%S')
+            f_handler.setFormatter(f_format)
+            #Add loggers to the handler
+            logger.addHandler(f_handler)
+
+            if padmin == 1:
+                logger.info("First Name: %s \tLast Name: %s \tTitle: %s \tAdmin:YES", pfirstname, plastname, ptitle)
+            if padmin == 0:
+                logger.info("First Name: %s \tLast Name: %s \tTitle: %s \tAdmin:NO", pfirstname, plastname, ptitle)
+
+            
             try:
                 conn = sqlite3.connect('optima.db')
                 cursor = conn.cursor()
@@ -204,7 +223,8 @@ def tela_quatro():
                 print("Dados inseridos com sucesso.")
                 conn.close()
                 fechar()
-                tela05teste.tela_cinco()   
+                tela05teste.tela_cinco()
+                     
             except:
                 if self.msg["text"] == "First Name: " + pfirstname + "\n Last Name: " + plastname + "\n Title: " + ptitle + "\n Admin: YES":
                     self.msg["text"] = "O Nome inserido já está cadastrado. Insira novos dados."
@@ -235,7 +255,7 @@ def tela_quatro():
                     self.botaoLoad["state"] = NORMAL
                 else:
                     self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
-            
+                    
     def return_to_home():
         fechar()
         #tela01alt.telaum()
