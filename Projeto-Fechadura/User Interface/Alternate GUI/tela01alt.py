@@ -30,7 +30,7 @@ def telaum():
             
             self.button3 = Button(self.widget1, text = "CANCEL")
             #self.button3["width"] = 50
-            self.button3["height"] = 2
+            self.button3["height"] = 4
             self.button3["font"]= ("Arial","12")
             self.button3["command"] = fechar
             self.button3.pack(side = TOP, fill=X)
