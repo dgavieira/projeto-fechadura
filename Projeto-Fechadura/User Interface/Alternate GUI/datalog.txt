@@ -1,1 +1,4 @@
 28/05/2019 15:17:32 - tela04alt03 - INFO -- First Name: Diego 	Last Name: Vieira 	Title: Estagiário 	Admin:NO
+31/05/2019 16:36:18 - tela04alt03 - INFO -- First Name: Diego 	Last Name: Vieira 	Title: Estagiário 	Admin:NO
+31/05/2019 16:37:02 - tela04alt03 - INFO -- First Name: Leonardo 	Last Name: Arcanjo 	Title: Técnico 	Admin:YES
+31/05/2019 16:37:02 - tela04alt03 - INFO -- First Name: Leonardo 	Last Name: Arcanjo 	Title: Técnico 	Admin:YES

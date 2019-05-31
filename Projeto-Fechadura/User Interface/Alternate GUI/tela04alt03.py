@@ -210,7 +210,7 @@ def telaquatro():
                 cursor.execute("""
                     INSERT INTO optima (first_name, last_name, title, admin)
                     VALUES (?, ?, ?, ?)
-                    """, (pfirst_name, plast_name, ptitle, p_admin)
+                    """, (pfirstname, plastname, ptitle, p_admin)
                     )
                 conn.commit()
                 print("Dados inseridos com sucesso.")

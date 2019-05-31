@@ -8,6 +8,7 @@
 
 from tkinter import *
 import sqlite3
+import tela03alt
 
 def telaseis():
     class ScreenSix:
@@ -27,11 +28,6 @@ def telaseis():
             self.lista.pack(side=LEFT)
             self.scroll.pack(side = RIGHT, fill = Y)
             
-            #teste inserir elementos na listbox
-            self.lista.delete(0,END)
-            for rows in range(30):
-                self.lista.insert(END, rows)
-            
             self.fontePadrao = ("Arial","10")
             #elementos do segundo container
                 
@@ -40,6 +36,7 @@ def telaseis():
             self.BotaoUp["font"] = self.fontePadrao
             self.BotaoUp["width"] = 18
             self.BotaoUp["height"] = 5
+            self.BotaoUp.bind("<Button-1>",self.ScrollUp)
             self.BotaoUp.grid(row = 0, column = 2, sticky = NW)
             
             self.BotaoDown = Button(master)
@@ -47,6 +44,7 @@ def telaseis():
             self.BotaoDown["font"] = self.fontePadrao
             self.BotaoDown["width"] = 18
             self.BotaoDown["height"] = 5
+            self.BotaoDown.bind("<Button-1>",self.ScrollDown)
             self.BotaoDown.grid(row = 1, column = 2, sticky = NW)
             
             #elementos do terceiro container
@@ -63,6 +61,7 @@ def telaseis():
             self.BotaoBack["width"] = 18
             self.BotaoBack["height"] = 3
             self.BotaoBack["font"] = self.fontePadrao
+            self.BotaoBack["command"] = backtoenroll
             self.BotaoBack.grid(row = 2, column = 1, sticky = SW)
             
             self.BotaoDelete = Button(master)
@@ -72,14 +71,30 @@ def telaseis():
             self.BotaoDelete["font"] = self.fontePadrao
             self.BotaoDelete.grid(row = 2, column = 2, sticky = SW)
             
+        def ScrollDown(self, event):
+            self.lista.yview_scroll(1,"units")
+            
+        def ScrollUp(self, event):
+            self.lista.yview_scroll(-1,"units")
+            
         def fetch_data(self):
             conn = sqlite3.connect('optima.db')
             cursor = conn.cursor()
-            conn.execute("SELECT * FROM optima")
-            rows = conn.fetchall()
-            conn.disconnect()
-            return rows
-            
+            cursor.execute("SELECT * FROM optima")
+            rows = cursor.fetchall()
+            conn.close()
+            for row in rows:
+                print(row)
+            self.lista.delete(0,END)
+            for row in rows:
+                self.lista.insert(END, rows)
+                
+    def fechar():
+        root.destroy()
+        
+    def backtoenroll():
+        fechar()
+        tela03alt.telatres()
             
     root = Tk()
     ScreenSix(root)

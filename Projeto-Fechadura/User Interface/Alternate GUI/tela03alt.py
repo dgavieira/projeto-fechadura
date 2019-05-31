@@ -6,7 +6,7 @@
 #Autor: Diego Vieira
 
 from tkinter import *
-import tela01alt, tela02alt, tela04alt03
+import tela01alt, tela02alt, tela04alt03, tela06alt
 
 
 def telatres():
@@ -29,6 +29,7 @@ def telatres():
             self.button2["font"]= ("Arial","24")
             self.button2["height"] = 3
             self.button2["width"] = 30
+            self.button2["command"] = gotodelete
             self.button2.pack()
             
             self.button3 = Button(self.widget1, text = "EXIT")
@@ -49,6 +50,10 @@ def telatres():
         
     def fechar():
         root.destroy()
+        
+    def gotodelete():
+        fechar()
+        tela06alt.telaseis()
         
     root = Tk()
     ScreenThree(root)
