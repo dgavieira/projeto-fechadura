@@ -4,8 +4,15 @@
 #Description: Screen for make sure the ADMIN really wants to delete a member from the database
 #Especs: Touchscreen LCD 3,5" 480x320
 #Autor: Diego Vieira
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 
-from tkinter import *
+try:
+    # for Python2
+    from Tkinter import *
+except ImportError:
+    # for Python3
+    from tkinter import *
 import tela01alt, tela03alt
 
 def telasete():

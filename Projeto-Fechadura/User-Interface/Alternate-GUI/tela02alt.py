@@ -4,8 +4,15 @@
 #Description:Starts the Fingerprint search loop only for ROOT ADM users
 #Especs: Touchscreen LCD 3,5" 480x320
 #Autor: Diego Vieira
+#!/usr/local/bin/python
+#-*- coding: utf-8 -*-
 
-from tkinter import *
+try:
+    # for Python2
+    from Tkinter import *
+except ImportError:
+    # for Python3
+    from tkinter import *
 import tela01alt, tela03alt
 
 def teladois():
@@ -77,7 +84,7 @@ def teladois():
             self.home["command"] = returntohome
             self.home.pack(side=BOTTOM)
       
-        #Método verificar senha
+        #Metodo verificar senha
         def verificaSenha(self):
             usuario = self.nome.get()
             senha = self.senha.get()

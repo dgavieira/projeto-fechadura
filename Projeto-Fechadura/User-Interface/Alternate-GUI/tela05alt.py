@@ -4,8 +4,15 @@
 #Description: Shows the progress status for a fingerprint enrolling process on the database
 #Especs: Touchscreen LCD 3,5" 480x320
 #Autor: Diego Vieira
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 
-from tkinter import *
+try:
+    # for Python2
+    from Tkinter import *
+except ImportError:
+    # for Python3
+    from tkinter import *
 import sqlite3
 import tela03alt
 

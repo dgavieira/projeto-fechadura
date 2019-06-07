@@ -1,4 +1,6 @@
 #testatelaseis
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 
 import tela06alt
 

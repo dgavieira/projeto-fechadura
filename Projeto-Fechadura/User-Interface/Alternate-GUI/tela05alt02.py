@@ -5,8 +5,15 @@
 #INPUTS: example_enroll.py
 #Especs: Touchscreen LCD 3,5" 480x320
 #Autor: Diego Vieira
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 
-from tkinter import *
+try:
+    # for Python2
+    from Tkinter import *
+except ImportError:
+    # for Python3
+    from tkinter import *
 import tela04alt03, tela03alt
 import subprocess, sys, os
 
@@ -82,7 +89,8 @@ def telacinco():
             self.prompt.delete(1.0,END)
             msg = "Executing Fingerprint Enroll"
             path = '/home/pi/git-batch/projeto-fechadura/Projeto-Fechadura/pyfingerprint/src/files/examples/example_enroll.py'
-            process = subprocess.Popen(['lxterminal','-e','python3', path],
+            #path = '/home/pi/git-batch/projeto-fechadura/Projeto-Fechadura/User-Interface/Alternate-GUI/fpsim.py'
+            process = subprocess.Popen(['lxterminal','-e','python', path],
                                                                stdout = subprocess.PIPE,
                                                                stderr = subprocess.PIPE,
                                                                stdin = subprocess.PIPE)

@@ -1,4 +1,6 @@
 #exemplo de teste para windows de fingerprint enroll
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 
 def main():
     print("Waiting for Finger...")

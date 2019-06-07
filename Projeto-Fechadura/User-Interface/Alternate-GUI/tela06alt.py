@@ -5,9 +5,17 @@
 #INPUTS: optima.db
 #Especs: Touchscreen LCD 3,5" 480x320
 #Autor: Diego Vieira
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 
-from tkinter import *
-import sqlite3
+try:
+    # for Python2
+    from Tkinter import *
+except ImportError:
+    # for Python3
+    from tkinter import *
+from pynput.keyboard import Key, Controller
+import sqlite3, readline
 import tela03alt
 
 def telaseis():
@@ -22,6 +30,7 @@ def telaseis():
             self.lista["width"] = 30
             self.lista["height"] = 10
             self.lista["font"] = ('MS','12')
+            self.lista["selectmode"] = BROWSE
             self.scroll = Scrollbar(self.primeiroContainer)
             self.scroll["command"] = self.lista.yview
             self.lista.configure(yscrollcommand = self.scroll.set)
@@ -36,7 +45,7 @@ def telaseis():
             self.BotaoUp["font"] = self.fontePadrao
             self.BotaoUp["width"] = 18
             self.BotaoUp["height"] = 5
-            self.BotaoUp.bind("<Button-1>",self.ScrollUp)
+            self.BotaoUp["command"] = self.ScrollUp
             self.BotaoUp.grid(row = 0, column = 2, sticky = NW)
             
             self.BotaoDown = Button(master)
@@ -44,7 +53,7 @@ def telaseis():
             self.BotaoDown["font"] = self.fontePadrao
             self.BotaoDown["width"] = 18
             self.BotaoDown["height"] = 5
-            self.BotaoDown.bind("<Button-1>",self.ScrollDown)
+            self.BotaoDown["command"] = self.ScrollDown
             self.BotaoDown.grid(row = 1, column = 2, sticky = NW)
             
             #elementos do terceiro container
@@ -53,6 +62,7 @@ def telaseis():
             self.BotaoLoad["width"] = 18
             self.BotaoLoad["height"] = 3
             self.BotaoLoad["command"] = self.fetch_data
+            #self.BotaoLoad["command"] = self.fetch_data_test
             self.BotaoLoad["font"] = self.fontePadrao
             self.BotaoLoad.grid(row = 2, column = 0, sticky = SW)
             
@@ -70,24 +80,47 @@ def telaseis():
             self.BotaoDelete["height"] = 3
             self.BotaoDelete["font"] = self.fontePadrao
             self.BotaoDelete.grid(row = 2, column = 2, sticky = SW)
+        
+        def fetch_data_test(self): #rotina de testes
+            self.lista.delete(0,END)
+            db = ["leo", "cotta", "diego", "thalisson", "kadu", "savio"]
+            for item in db:
+                self.lista.insert(END, item)
+            self.lista.selection_set(self.lista.index(0))
+            keyboard = Controller()
+            keyboard.press(Key.tab)
+            keyboard.release(Key.tab)
             
-        def ScrollDown(self, event):
-            self.lista.yview_scroll(1,"units")
-            
-        def ScrollUp(self, event):
-            self.lista.yview_scroll(-1,"units")
-            
-        def fetch_data(self):
+                        
+        def fetch_data(self): #rotina oficial de obtencao do query do banco
             conn = sqlite3.connect('optima.db')
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM optima")
+            cursor.execute("""SELECT
+                               first_name AS FIRST_NAME,
+                               last_name AS LAST_NAME,
+                               title AS TITLE,
+                               admin AS ADMIN_LEVEL,
+                               pos_number AS POSITION_NUMBER
+                           FROM optima""")
             rows = cursor.fetchall()
-            conn.close()
             for row in rows:
                 print(row)
             self.lista.delete(0,END)
             for row in rows:
-                self.lista.insert(END, rows)
+                self.lista.insert(END, row)
+            keyboard = Controller()
+            keyboard.press(Key.tab)
+            keyboard.release(Key.tab)
+            
+        def ScrollDown(self):
+            keyboard = Controller()
+            keyboard.press(Key.down)
+            keyboard.release(Key.down)
+            
+        def ScrollUp(self):
+            keyboard = Controller()
+            keyboard.press(Key.up)
+            keyboard.release(Key.up)
                 
     def fechar():
         root.destroy()

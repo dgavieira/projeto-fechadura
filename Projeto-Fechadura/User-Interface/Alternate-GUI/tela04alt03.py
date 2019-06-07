@@ -5,8 +5,15 @@
 #INPUTS: Name; Title; Button for Fingerprint Loop
 #Especs: Touchscreen LCD 3,5" 480x320
 #Autor: Diego Vieira
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 
-from tkinter import *
+try:
+    # for Python2
+    from Tkinter import *
+except ImportError:
+    # for Python3
+    from tkinter import *
 import tela01alt, tela05alt02
 import sqlite3, logging, time
 
@@ -117,7 +124,7 @@ def telaquatro():
             self.botaoLoad["width"] = 30
             self.botaoLoad.pack()
             
-            #elementos do sétimo container
+            #elementos do setimo container
             self.msg = Message(self.setimoContainer)
             self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
             self.msg["relief"] = SUNKEN
@@ -200,9 +207,9 @@ def telaquatro():
             p_admin = self.var.get()
             
             #converte as strings para minusculas
-            pfirstname = p_first_name.casefold()
-            plastname = p_last_name.casefold()
-            ptitle = p_title.casefold()
+            pfirstname = p_first_name.lower()
+            plastname = p_last_name.lower()
+            ptitle = p_title.lower()
             
             try:
                 conn = sqlite3.connect('optima.db')
@@ -213,7 +220,6 @@ def telaquatro():
                     """, (pfirstname, plastname, ptitle, p_admin)
                     )
                 conn.commit()
-                print("Dados inseridos com sucesso.")
                 conn.close()
                 fechar()
                 
@@ -222,7 +228,7 @@ def telaquatro():
                 #creating custom logger
                 logger = logging.getLogger(__name__)
                 #handler setting
-                f_handler = logging.FileHandler('datalog.txt')
+                f_handler = logging.FileHandler('datalog-teste.txt')
                 f_handler.setLevel(logging.DEBUG)
                 #setting format
                 f_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s -- %(message)s','%d/%m/%Y %H:%M:%S')
@@ -239,7 +245,7 @@ def telaquatro():
                 
             except:
                 if self.msg["text"] == "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: YES":
-                    self.msg["text"] = "O Nome inserido já está cadastrado. Insira novos dados."
+                    self.msg["text"] = "Name already enrolled. Input new data."
                     self.botaoLoad["state"] = DISABLED
                     self.botaoFingerprint["state"] = DISABLED
                     self.check.toggle()
@@ -253,7 +259,7 @@ def telaquatro():
                     self.botaoFingerprint["state"] = NORMAL
                     self.botaoLoad["state"] = NORMAL
                 elif self.msg["text"] == "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: NO":
-                    self.msg["text"] = "O Nome inserido já está cadastrado. Insira novos dados."
+                    self.msg["text"] = "Name already enrolled. Input new data."
                     self.botaoLoad["state"] = DISABLED
                     self.botaoFingerprint["state"] = DISABLED
                     self.firstname.delete(0,END)
