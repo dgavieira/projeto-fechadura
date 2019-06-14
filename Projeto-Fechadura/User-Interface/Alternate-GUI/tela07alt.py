@@ -15,8 +15,10 @@ except ImportError:
     from tkinter import *
 import tela01alt, tela03alt
 
+from tela06alt import telaseis
+
 def telasete():
-    class ScreenSeven:
+    class ScreenSeven(ScreenSix):
         def __init__(self, master = None):
             self.fontePadrao = ("Arial","24")
             self.widget1 = Frame(master)

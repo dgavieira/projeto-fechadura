@@ -61,8 +61,8 @@ def telaseis():
             self.BotaoLoad["text"] = "LOAD"
             self.BotaoLoad["width"] = 18
             self.BotaoLoad["height"] = 3
-            self.BotaoLoad["command"] = self.fetch_data
-            #self.BotaoLoad["command"] = self.fetch_data_test
+            #self.BotaoLoad["command"] = self.fetch_data
+            self.BotaoLoad["command"] = self.fetch_data_test
             self.BotaoLoad["font"] = self.fontePadrao
             self.BotaoLoad.grid(row = 2, column = 0, sticky = SW)
             
@@ -78,18 +78,32 @@ def telaseis():
             self.BotaoDelete["text"] = "DELETE"
             self.BotaoDelete["width"] = 18
             self.BotaoDelete["height"] = 3
+            self.BotaoDelete["command"] = self.listbox_data_delete
             self.BotaoDelete["font"] = self.fontePadrao
             self.BotaoDelete.grid(row = 2, column = 2, sticky = SW)
+            
+        def listbox_data_delete(self):
+            items = self.lista.curselection()
+            pos = 1
+            for i in items:
+                idx = int(i) - pos
+                self.lista.delete(idx,idx)
+                pos = pos + 1
+            super().listbox_data_delete()
+            
+        '''def database_data_delete(self):
+            conn = sqlite3.connect('optima.db')
+            cursor = conn.cursor()
+            sql = 'DELETE FROM optima WHERE pos_number=?'
+            cursor.execute(sql,(,))  '''                     
         
         def fetch_data_test(self): #rotina de testes
             self.lista.delete(0,END)
-            db = ["leo", "cotta", "diego", "thalisson", "kadu", "savio"]
+            db = ["leo", "cotta", "diego", "thalisson", "savio"]
             for item in db:
                 self.lista.insert(END, item)
             self.lista.selection_set(self.lista.index(0))
-            keyboard = Controller()
-            keyboard.press(Key.tab)
-            keyboard.release(Key.tab)
+            self.lista.focus_set()
             
                         
         def fetch_data(self): #rotina oficial de obtencao do query do banco
@@ -105,12 +119,10 @@ def telaseis():
             rows = cursor.fetchall()
             for row in rows:
                 print(row)
-            self.lista.delete(0,END)
+            self.lista.delete(1,END)
             for row in rows:
                 self.lista.insert(END, row)
-            keyboard = Controller()
-            keyboard.press(Key.tab)
-            keyboard.release(Key.tab)
+            self.lista.focus_set()
             
         def ScrollDown(self):
             keyboard = Controller()
