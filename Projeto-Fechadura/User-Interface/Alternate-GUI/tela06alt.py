@@ -103,10 +103,10 @@ def telaseis():
             for item in db:
                 self.lista.insert(END, item)
             self.lista.selection_set(self.lista.index(0))
-            self.lista.focus_set()
+            self.lista.focus_set()  #set focus to listbox
             
                         
-        def fetch_data(self): #rotina oficial de obtencao do query do banco
+        def fetch_data(self): #database query main loop
             conn = sqlite3.connect('optima.db')
             cursor = conn.cursor()
             cursor.execute("""SELECT
@@ -117,6 +117,8 @@ def telaseis():
                                pos_number AS POSITION_NUMBER
                            FROM optima""")
             rows = cursor.fetchall()
+            
+            #insert database info on listbox row by row
             for row in rows:
                 print(row)
             self.lista.delete(1,END)

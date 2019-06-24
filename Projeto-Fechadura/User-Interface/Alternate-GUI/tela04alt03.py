@@ -201,6 +201,7 @@ def telaquatro():
                 pass
         
         def enabledb(self):
+            #get info by user on entry input
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()
