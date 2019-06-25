@@ -16,7 +16,7 @@ except ImportError:
     from tkinter import *
 from pynput.keyboard import Key, Controller
 import sqlite3, readline
-import tela03alt
+import tela03alt, tela07alt
 
 def telaseis():
     class ScreenSix:
@@ -78,18 +78,23 @@ def telaseis():
             self.BotaoDelete["text"] = "DELETE"
             self.BotaoDelete["width"] = 18
             self.BotaoDelete["height"] = 3
-            self.BotaoDelete["command"] = self.listbox_data_delete
+            self.BotaoDelete["command"] = self.run_listbox_delete
             self.BotaoDelete["font"] = self.fontePadrao
             self.BotaoDelete.grid(row = 2, column = 2, sticky = SW)
-            
+        
         def listbox_data_delete(self):
             items = self.lista.curselection()
-            pos = 1
+            pos = 0
             for i in items:
                 idx = int(i) - pos
                 self.lista.delete(idx,idx)
                 pos = pos + 1
-            super().listbox_data_delete()
+            return idx
+        
+        def run_listbox_delete(self):
+            self.listbox_data_delete()
+            fechar()
+            tela07alt.telasete()
             
         '''def database_data_delete(self):
             conn = sqlite3.connect('optima.db')

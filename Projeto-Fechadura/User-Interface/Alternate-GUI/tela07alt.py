@@ -13,11 +13,12 @@ try:
 except ImportError:
     # for Python3
     from tkinter import *
-import tela01alt, tela03alt
+import tela01alt, tela03alt, tela06alt
 
-from tela06alt import telaseis
+#from tela06alt import telaseis
 
 def telasete():
+    super(ScreenSix,self).__init__()
     class ScreenSeven(ScreenSix):
         def __init__(self, master = None):
             self.fontePadrao = ("Arial","24")
@@ -48,6 +49,18 @@ def telasete():
             self.home["width"] = 12
             self.home["command"] = returntohome
             self.home.pack(side=BOTTOM)
+        
+        def database_data_delete(self):
+            super().listbox_data_delete(self)
+            
+            pos_number_db = idx - 1
+            
+            conn = sqlite3.connect('optima.db')
+            cursor = conn.cursor()
+            sql = 'DELETE FROM optima WHERE pos_number=?'
+            cursor.execute(sql,(pos_number_db,))
+            
+            
             
     def returntohome():
         fechar()
