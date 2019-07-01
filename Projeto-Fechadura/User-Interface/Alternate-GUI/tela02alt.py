@@ -7,6 +7,7 @@
 #!/usr/local/bin/python
 #-*- coding: utf-8 -*-
 
+#tratamento de excecao para portabilidade do tkinter
 try:
     # for Python2
     from Tkinter import *
@@ -17,14 +18,9 @@ import tela01alt, tela03alt
 
 def teladois():
     class ScreenTwo:
-        def __init__(self, master = None):
-            '''self.screen = Frame(master)
-            self.screen.pack()
-        
-            self.canvas = Canvas(self.screen, width=478, height=270, background="yellow")
-            self.text = self.canvas.create_text( 239, 140,  text="MASTER FINGER", fill="black", font=("Helvetica", 30, "bold"))
-            self.canvas.pack()'''
-            
+        def __init__(self, master = None): #construtor da classe referente a tela 02
+
+            #construcao dos containeres que acomodarao os elementos de layout
             self.fontePadrao = ("Arial", "10")
             self.primeiroContainer = Frame(master)
             self.primeiroContainer["pady"] = 10
@@ -104,6 +100,7 @@ def teladois():
     def fechar():
         root.destroy()
 
+    #execucao da tela 02
     root = Tk()
     ScreenTwo(root)
     root.title("Admin Access")
