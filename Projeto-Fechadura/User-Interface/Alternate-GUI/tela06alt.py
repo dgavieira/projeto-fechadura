@@ -8,24 +8,29 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
+#tratamento de excecao de portabilidade da biblioteca tkinter
 try:
     # for Python2
     from Tkinter import *
 except ImportError:
     # for Python3
     from tkinter import *
+#importa bibliotecas utilizadas pelos metodos da classe
 from pynput.keyboard import Key, Controller
 import sqlite3, readline
+
+#importa telas que interagem com tela atual
 import tela03alt, tela07alt
 
 def telaseis():
     class ScreenSix:
-        def __init__(self, master = None):
-            
+        def __init__(self, master = None):  #construtor da classe
+
+            #layout em formato de grid
             self.primeiroContainer = Frame(master)
             self.primeiroContainer.grid(row = 0, column = 0, rowspan = 2, columnspan = 2, sticky = NW)
             
-            #elementos dos primeiro container
+            #elementos do primeiro container
             self.lista = Listbox(self.primeiroContainer)
             self.lista["width"] = 30
             self.lista["height"] = 10

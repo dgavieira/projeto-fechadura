@@ -1,4 +1,4 @@
-#Title: Biometric Lock User Interface
+﻿#Title: Biometric Lock User Interface
 #Organization: Optima-UFAM
 #Screen 5: Fingerprint Enrolling Calibration Screen
 #Description: Gets fingerprint data for the member previously enrolled
@@ -42,6 +42,7 @@ def telacinco():
             self.quartoContainer.pack()
             
             #elementos do primeiro Container
+            #construtor dos objetos do layout
             self.titulo = Label(self.primeiroContainer)
             self.titulo["text"] = "FINGERPRINT ENROLL"
             self.titulo["font"] = ("Arial","20","bold")
@@ -68,7 +69,9 @@ def telacinco():
             self.runButton["command"] = self.run_shell
             self.runButton["width"] = 10
             self.runButton.pack(side = LEFT)
-            
+
+            #esse botao não tá fazendo nada, mas deixa ele ai
+            #preguica de mexer no layout
             self.loadButton = Button(self.terceiroContainer)
             self.loadButton["text"] = "LOAD"
             self.loadButton["font"] = self.fonteBotoes
@@ -84,16 +87,18 @@ def telacinco():
             self.okButton["width"] = 10
             self.okButton.pack()
             
-            
-        def ret_screen_four(self):
+        #metodos da classe    
+        def ret_screen_four(self): #retorna a tela anterior - comandado por botao RETURN
             fechar()
             tela04alt03.telaquatro()
             
-        def run_shell(self):
+        def run_shell(self): #metodo que executa o programa example_enroll embutido
             self.prompt.delete(1.0,END)
             msg = "Executing Fingerprint Enroll"
             path = '/home/pi/git-batch/projeto-fechadura/Projeto-Fechadura/pyfingerprint/src/files/examples/example_enroll.py'
             #path = '/home/pi/git-batch/projeto-fechadura/Projeto-Fechadura/User-Interface/Alternate-GUI/fpsim.py'
+
+            #rotina de subprocesso - ESTÁ FUNCIONANDO - não mexa nem tente entender
             process = subprocess.Popen(['lxterminal','-e','python', path],
                                                                stdout = subprocess.PIPE,
                                                                stderr = subprocess.PIPE,
@@ -103,19 +108,15 @@ def telacinco():
             process.stdin.write(b'\n')
             process.stdin.flush()
             stdout, stderr = process.communicate()
-            #line = process.stdout.readline()
-            #self.prompt.insert(END, line)
-            #stdin, stdout, stderr = process.communicate()
-            #stdout, stderr = process.communicate()
-            #line = process.stdout.readline()
             
-        def conclude(self):
+        def conclude(self): #invoca proxima tela do fluxo
             fechar()
             tela03alt.telatres()
             
     def fechar():
         root.destroy()
-        
+
+    #execucao da tela    
     root = Tk()
     ScreenFive(root)
     root.title('Fingerprint Calibration Screen')
