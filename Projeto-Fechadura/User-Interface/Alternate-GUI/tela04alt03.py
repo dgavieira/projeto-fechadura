@@ -1,4 +1,4 @@
-#Title: Biometric Lock User Interface
+﻿#Title: Biometric Lock User Interface
 #Organization: Optima-UFAM
 #Screen 4: Enroll Screen
 #Description: Screen for enroll a brand new lab member // Allows admin level user to confirm data before upload to database
@@ -8,35 +8,40 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
+#tratamento de excecao para portabilidade da biblioteca tkinter
 try:
     # for Python2
     from Tkinter import *
 except ImportError:
     # for Python3
     from tkinter import *
+#importa arquivos de telas que interagem com a atual
 import tela01alt, tela05alt02
+#importa bibliotecas adicionais utilizadas pelos métodos da classe
 import sqlite3, logging, time
 
+#cria arquivo de banco de dados e cursor
 conn = sqlite3.connect('optima.db')
 cursor = conn.cursor()
 
-#Enabling schema
+#formata tabela
 cursor.execute("""CREATE TABLE IF NOT EXISTS optima (
             member_id integer PRIMARY KEY,
             first_name TEXT NOT NULL,
             last_name TEXT NOT NULL,
             title TEXT NOT NULL,
             admin integer,
-            UNIQUE (first_name, last_name))"""
+            UNIQUE (first_name, last_name))""" #cria indexação exclusiva para evitar duplicatas
             )
 conn.commit()
 conn.close()
 
 def telaquatro():
     class ScreenFour:
-        def __init__(self, master = None):
+        def __init__(self, master = None):          #construtor da tela quatro
             self.fontePadrao = ("Arial","10")
-            
+
+            #construtor do layout externo
             self.primeiroContainer = Frame(master)
             self.primeiroContainer["pady"] = 10
             self.primeiroContainer.pack()
@@ -151,13 +156,17 @@ def telaquatro():
             self.botaoFingerprint["command"] = self.enabledb
             self.botaoFingerprint["width"] = 10
             self.botaoFingerprint.pack(side = LEFT)
+
+        #métodos da classe
             
-        def showinput(self):
+        
+        def showinput(self): #exibe a entrada digitada pelo widget entry
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()
             p_admin = self.var.get()
-            
+
+            #troca texto para string com dados adicionados
             if self.msg["text"] == "First Name: \n Last Name: \n Title: \n Admin:":
                 if p_admin == 1:
                     self.msg["text"] = "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: YES"
@@ -168,12 +177,13 @@ def telaquatro():
             else:
                 self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
                 
-        def eraseinput(self):
+        def eraseinput(self): #metodo que apaga a entrada digitada - comandado pelo botao CANCEL
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()
             p_admin = self.var.get()
-            
+
+            #reseta tela para estado original e apaga variáveis
             if self.msg["text"] == "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: YES":
                 self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
                 self.botaoLoad["state"] = NORMAL
@@ -211,8 +221,10 @@ def telaquatro():
             pfirstname = p_first_name.lower()
             plastname = p_last_name.lower()
             ptitle = p_title.lower()
-            
+
+            #tratamento de excecao para verificacao de duplicata
             try:
+                #escreve valores no banco
                 conn = sqlite3.connect('optima.db')
                 cursor = conn.cursor()
                 cursor.execute("""
@@ -244,7 +256,7 @@ def telaquatro():
 
                 tela05alt02.telacinco()
                 
-            except:
+            except: #se o python levantar uma excecao - ocorre esse loop
                 if self.msg["text"] == "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: YES":
                     self.msg["text"] = "Name already enrolled. Input new data."
                     self.botaoLoad["state"] = DISABLED
@@ -275,13 +287,14 @@ def telaquatro():
                 else:
                     self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
                     
-    def returntohome():
+    def returntohome(): #metodo de retornar a tela principal
         fechar()
         tela01alt.telaum()
     
-    def fechar():
+    def fechar(): #metodo de destruir a tela atual
         root.destroy()
-        
+
+    #execucao da tela atual
     root = Tk()
     ScreenFour(root)
     root.title("Enroll Screen")

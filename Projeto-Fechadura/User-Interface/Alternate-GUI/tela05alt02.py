@@ -8,19 +8,23 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
+#tratamento de excecao na portabilidade da biblioteca tkinter
 try:
     # for Python2
     from Tkinter import *
 except ImportError:
     # for Python3
     from tkinter import *
+#importa arquivos de telas que interagem com a atual
 import tela04alt03, tela03alt
+#importa bibliotecas utilizadas pelos metodos da classe
 import subprocess, sys, os
 
 def telacinco():
     class ScreenFive:
-        def __init__(self, master = None):
-            
+        def __init__(self, master = None): #construtor da classe
+
+            #construtor da moldura do layout
             self.primeiroContainer = Frame(master)
             self.primeiroContainer["pady"] = 10
             self.primeiroContainer.pack()
