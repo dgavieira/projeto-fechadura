@@ -13,11 +13,12 @@ try:
 except ImportError:
     # for Python3
     from tkinter import *
-import tela01alt, tela03alt, tela06alt
+import tela01alt, tela03alt
 
-#from tela06alt import telaseis
+from tela06alt import telaseis
 
-def telasete():
+
+def telasete(idx):
     super(ScreenSix,self).__init__()
     class ScreenSeven(ScreenSix):
         def __init__(self, master = None):
@@ -75,7 +76,8 @@ def telasete():
     root.geometry('478x270')
     #root.overrideredirect(True)
     root.mainloop()
-            
+
+          
             
             
             
