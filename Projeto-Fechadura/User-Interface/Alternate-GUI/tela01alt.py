@@ -7,7 +7,6 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
-#tratamento de portabilidade na importação da biblioteca tkinter
 try:
     # for Python2
     from Tkinter import *
@@ -15,7 +14,8 @@ except ImportError:
     # for Python3
     from tkinter import *
 
-import tela02alt
+
+import tela02alt #importa tela seguinte
 
 def telaum():
     class ScreenOne:
@@ -44,21 +44,23 @@ def telaum():
             self.button3["command"] = fechar
             self.button3.pack(side = TOP, fill=X)
 
-    #métodos da funcao telaum
-    
-    def doublefuncoptions(): #fecha tela atual e invoca próxima
+
+    #metodos
+    def doublefuncoptions(): #chama transição para tela dois
         fechar()
         tela02alt.teladois()
         
-    def fechar(): #encapsula método interno do python para não gerar excecao
+    def fechar(): #encapsula metodo interno do python para nao gerar excecao
         root.destroy()
 
-    #execucao da tela
+
+    #loop de inicialização da tela
     root = Tk()
     ScreenOne(root)
     root.title("Main Screen")
     root.geometry('478x270')
-    #root.overrideredirect(True)
+    #root.overrideredirect(True) #trava ponteiro do mouse e força app no primeiro plano
     root.mainloop()
-    
-    
+
+if __name__ == "__main__": #permite executar esse script como principal
+    telaum()

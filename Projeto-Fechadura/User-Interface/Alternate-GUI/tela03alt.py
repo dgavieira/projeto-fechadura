@@ -36,11 +36,11 @@ def telatres():
             #construtor do botao DELETE
             self.button2 = Button(self.widget1, text = "DELETE")
             self.button2["font"]= ("Arial","24")
+
             self.button2["height"] = 3
             self.button2["width"] = 30
             self.button2["command"] = gotodelete
             self.button2.pack()
-
             #construtor do botao EXIT
             self.button3 = Button(self.widget1, text = "EXIT")
             self.button3["font"]= ("Arial","24")
@@ -48,17 +48,19 @@ def telatres():
             self.button2["height"] = 2
             self.button3["command"] = doublefuncexit
             self.button3.pack()
+
             
     #metodos da tela 03 - destroem tela atual e abrem tela referente de acordo com o fluxo da UI
-            
+
     def doublefuncenroll():
         fechar()
         tela04alt03.telaquatro()
-        
+
+    # funcao de retornar para tela inicial
     def doublefuncexit():
         fechar()
         tela01alt.telaum()
-        
+
     def fechar():
         root.destroy()
         
@@ -71,5 +73,8 @@ def telatres():
     ScreenThree(root)
     root.title("ADM Level Menu Screen")
     root.geometry('478x270')
-    #root.overrideredirect(True)
+    # root.overrideredirect(True)
     root.mainloop()
+
+if __name__ == "__main__":  # permite executar esse script como principal
+    telatres()

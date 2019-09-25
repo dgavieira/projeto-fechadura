@@ -70,7 +70,6 @@ def telacinco():
             self.runButton["width"] = 10
             self.runButton.pack(side = LEFT)
 
-            #esse botao não tá fazendo nada, mas deixa ele ai
             #preguica de mexer no layout
             self.loadButton = Button(self.terceiroContainer)
             self.loadButton["text"] = "LOAD"
@@ -98,7 +97,7 @@ def telacinco():
             path = '/home/pi/git-batch/projeto-fechadura/Projeto-Fechadura/pyfingerprint/src/files/examples/example_enroll.py'
             #path = '/home/pi/git-batch/projeto-fechadura/Projeto-Fechadura/User-Interface/Alternate-GUI/fpsim.py'
 
-            #rotina de subprocesso - ESTÁ FUNCIONANDO - não mexa nem tente entender
+            #rotina de subprocesso - ESTA FUNCIONANDO - nao mexa nem tente entender
             process = subprocess.Popen(['lxterminal','-e','python', path],
                                                                stdout = subprocess.PIPE,
                                                                stderr = subprocess.PIPE,
@@ -123,4 +122,6 @@ def telacinco():
     root.geometry('478x270')
     #root.overrideredirect(True)
     root.mainloop()
-    
+
+if __name__ == "__main__":  # permite executar esse script como principal
+    telacinco()
