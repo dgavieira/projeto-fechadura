@@ -110,4 +110,6 @@ def telacinco():
     root.geometry('478x270')
     #root.overrideredirect(True)
     root.mainloop()
-    
+
+if __name__ == "__main__":  # permite executar esse script como principal
+    telacinco()

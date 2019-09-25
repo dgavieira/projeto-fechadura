@@ -6,14 +6,18 @@
 #Especs: Touchscreen LCD 3,5" 480x320
 #Autor: Diego Vieira
 
+# importa bibliotecas
 from tkinter import *
-import tela01alt, tela05alt02
 import sqlite3, logging, time
 
+# importa telas que interagem com a tela quatro
+import tela01alt, tela05alt02
+
+# inicializacao do banco de dados
 conn = sqlite3.connect('optima.db')
 cursor = conn.cursor()
 
-#Enabling schema
+# habilitando tabela
 cursor.execute("""CREATE TABLE IF NOT EXISTS optima (
             member_id integer PRIMARY KEY,
             first_name TEXT NOT NULL,
@@ -26,10 +30,11 @@ conn.commit()
 conn.close()
 
 def telaquatro():
-    class ScreenFour:
+    class ScreenFour: #classe
         def __init__(self, master = None):
             self.fontePadrao = ("Arial","10")
-            
+
+            # construtor de container
             self.primeiroContainer = Frame(master)
             self.primeiroContainer["pady"] = 10
             self.primeiroContainer.pack()
@@ -62,13 +67,13 @@ def telaquatro():
             self.oitavoContainer["padx"] = 60
             self.oitavoContainer.pack()
             
-            #elementos do primeiro container
+            # elementos do primeiro container
             self.titulo = Label(self.primeiroContainer)
             self.titulo["text"] = "ENROLL"
             self.titulo["font"] = ("Arial", "10", "bold")
             self.titulo.pack()
             
-            #elementos do segundo container
+            # elementos do segundo container
             self.firstnameLabel = Label(self.segundoContainer)
             self.firstnameLabel["text"] = "First Name"
             self.firstnameLabel["font"] = self.fontePadrao
@@ -79,7 +84,7 @@ def telaquatro():
             self.firstname["font"] = self.fontePadrao
             self.firstname.pack(side=LEFT)
             
-            #elementos do terceiro container
+            # elementos do terceiro container
             self.lastnameLabel = Label(self.terceiroContainer)
             self.lastnameLabel["text"] = "Last Name"
             self.lastnameLabel["font"] = self.fontePadrao
@@ -90,7 +95,7 @@ def telaquatro():
             self.lastname["font"] = self.fontePadrao
             self.lastname.pack(side=LEFT)
             
-            #elementos do quarto container
+            # elementos do quarto container
             self.titleLabel = Label(self.quartoContainer)
             self.titleLabel["text"] = "Title\t"
             self.titleLabel["font"] = self.fontePadrao
@@ -101,7 +106,7 @@ def telaquatro():
             self.title["font"] = self.fontePadrao
             self.title.pack(side=LEFT)
             
-            #elementos do quinto container
+            # elementos do quinto container
             self.var = IntVar()
             self.check = Checkbutton(self.quintoContainer)
             self.check["font"] = self.fontePadrao
@@ -109,7 +114,7 @@ def telaquatro():
             self.check["variable"] = self.var
             self.check.pack(side = LEFT)
             
-            #elementos do sexto container
+            # elementos do sexto container
             self.botaoLoad = Button(self.sextoContainer)
             self.botaoLoad["text"] = "LOAD"
             self.botaoLoad["font"] = self.fontePadrao
@@ -117,13 +122,13 @@ def telaquatro():
             self.botaoLoad["width"] = 30
             self.botaoLoad.pack()
             
-            #elementos do sétimo container
+            # elementos do sétimo container
             self.msg = Message(self.setimoContainer)
             self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
             self.msg["relief"] = SUNKEN
             self.msg.pack(fill = X, expand = YES)
             
-            #elementos do oitavo container
+            # elementos do oitavo container
             self.botaoMainMenu = Button(self.oitavoContainer)
             self.botaoMainMenu["text"] = "MAIN MENU"
             self.botaoMainMenu["font"] = self.fontePadrao
@@ -144,13 +149,16 @@ def telaquatro():
             self.botaoFingerprint["command"] = self.enabledb
             self.botaoFingerprint["width"] = 10
             self.botaoFingerprint.pack(side = LEFT)
-            
+
+        # metodos da classe
         def showinput(self):
+            # capta variaveis digitadas no objeto entry
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()
             p_admin = self.var.get()
-            
+
+            # escreve o que foi digitado no widget msg
             if self.msg["text"] == "First Name: \n Last Name: \n Title: \n Admin:":
                 if p_admin == 1:
                     self.msg["text"] = "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: YES"
@@ -162,11 +170,13 @@ def telaquatro():
                 self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
                 
         def eraseinput(self):
+            # capta variaveis digitadas no objeto entry
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()
             p_admin = self.var.get()
-            
+
+            # apaga o que foi mostrado no widget msg
             if self.msg["text"] == "First Name: " + p_first_name + "\n Last Name: " + p_last_name + "\n Title: " + p_title + "\n Admin: YES":
                 self.msg["text"] = "First Name: \n Last Name: \n Title: \n Admin:"
                 self.botaoLoad["state"] = NORMAL
@@ -192,18 +202,20 @@ def telaquatro():
                 self.botaoFingerprint["state"] = NORMAL
             else:
                 pass
-        
+
+        # insere a entrada de usuario no banco de dados
         def enabledb(self):
             p_first_name = self.firstname.get()
             p_last_name = self.lastname.get()
             p_title = self.title.get()
             p_admin = self.var.get()
             
-            #converte as strings para minusculas
+            # converte as strings para minusculas
             pfirstname = p_first_name.casefold()
             plastname = p_last_name.casefold()
             ptitle = p_title.casefold()
-            
+
+            # bloco try except que verifica se há duplicatas
             try:
                 conn = sqlite3.connect('optima.db')
                 cursor = conn.cursor()
@@ -219,15 +231,16 @@ def telaquatro():
                 
                 #Logging Configuration
                 #logging.basicConfig(filename = 'datalog.txt', format = '%(asctime)s  %(levelname)s:  %(message)s', datefmt = '%d/%m/%Y %H:%M:%S',level=logging.DEBUG)
-                #creating custom logger
+                # creating custom logger
+                # algumas IDEs precisam que o logger seja criado na mao
                 logger = logging.getLogger(__name__)
-                #handler setting
+                # handler setting
                 f_handler = logging.FileHandler('datalog.txt')
                 f_handler.setLevel(logging.DEBUG)
-                #setting format
+                # setting format
                 f_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s -- %(message)s','%d/%m/%Y %H:%M:%S')
                 f_handler.setFormatter(f_format)
-                #Add loggers to the handler
+                # Add loggers to the handler
                 logger.addHandler(f_handler)
 
                 if p_admin == 1:
@@ -274,11 +287,14 @@ def telaquatro():
     
     def fechar():
         root.destroy()
-        
+
+    # loop de inicialização da tela
     root = Tk()
     ScreenFour(root)
     root.title("Enroll Screen")
     root.geometry('478x270')
     #root.overrideredirect(True)
     root.mainloop()
-            
+
+if __name__ == "__main__":  # permite executar esse script como principal
+    telaquatro()
