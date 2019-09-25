@@ -303,7 +303,7 @@ def telaquatro():
     def fechar(): #metodo de destruir a tela atual
         root.destroy()
 
-    # loop de inicialização da tela
+    # loop de inicializacao da tela
     root = Tk()
     ScreenFour(root)
     root.title("Enroll Screen")

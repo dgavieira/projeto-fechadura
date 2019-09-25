@@ -14,7 +14,6 @@ except ImportError:
     # for Python3
     from tkinter import *
 
-
 import tela02alt #importa tela seguinte
 
 def telaum():
@@ -44,7 +43,6 @@ def telaum():
             self.button3["command"] = fechar
             self.button3.pack(side = TOP, fill=X)
 
-
     #metodos
     def doublefuncoptions(): #chama transição para tela dois
         fechar()
@@ -52,7 +50,6 @@ def telaum():
         
     def fechar(): #encapsula metodo interno do python para nao gerar excecao
         root.destroy()
-
 
     #loop de inicialização da tela
     root = Tk()

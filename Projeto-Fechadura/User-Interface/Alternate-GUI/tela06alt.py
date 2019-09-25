@@ -161,3 +161,6 @@ def telaseis():
     root.mainloop()
 
     return idx
+
+if __name__ == "__main__":  # permite executar esse script como principal
+    telaseis()

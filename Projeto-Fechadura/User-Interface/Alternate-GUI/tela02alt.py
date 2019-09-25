@@ -86,7 +86,6 @@ def teladois():
             self.home.pack(side=BOTTOM)
 
         # metodos
-
         def verificaSenha(self):
             usuario = self.nome.get()
             senha = self.senha.get()
@@ -107,7 +106,7 @@ def teladois():
     def fechar():
         root.destroy()
 
-    # loop de inicialização da tela
+    # loop de inicializacao da tela
 
     root = Tk()
     ScreenTwo(root)
